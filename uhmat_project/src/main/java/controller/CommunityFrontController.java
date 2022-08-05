@@ -20,6 +20,7 @@ import vo.ActionForward;
 public class CommunityFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("깃 이놈");
 		System.out.println("CommunityFrontController");
 		request.setCharacterEncoding("UTF-8");	
 	
