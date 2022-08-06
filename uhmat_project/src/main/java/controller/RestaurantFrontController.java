@@ -52,7 +52,7 @@ public class RestaurantFrontController extends HttpServlet {
 			forward = action.execute(request, response);
 		}else if(command.equals("/reviewModifyForm.re")) {
 			System.out.println("리뷰 수정 폼 요청!");
-			action = new reviewModifyFormAction();
+			action = new reviewModifyFormAction(); 
 			forward = action.execute(request, response);
 		}else if(command.equals("/reviewModifyPro.re")) {
 			System.out.println("리뷰 수정 업데이트 요청!");
