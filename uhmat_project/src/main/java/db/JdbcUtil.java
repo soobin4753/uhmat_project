@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class JdbcUtill {
+public class JdbcUtil {
 	public static Connection getConnection() {
 	 
 		Connection con=null;
