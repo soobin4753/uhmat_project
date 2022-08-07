@@ -10,8 +10,6 @@
   <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
 </head>
 <body>
- 
-
 
  <div id="naver_id_login"></div>
  
