@@ -128,14 +128,6 @@
 		window.open("MemberCheckEmailForm.me", "check_id", "width=400,height=300");
 	}
 
-
-
-
-	// 이메일 도메인 선택 시 email2 영역에 선택된 도메인 표시
-	function changeDomain() {
-		document.fr.email2.value = document.fr.emailDomain.value;
-	}
-
 	// 다음 우편번호 API
 	function execDaumPostcode() {
 		new daum.Postcode(

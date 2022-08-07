@@ -6,14 +6,28 @@
 <head> 
 <meta charset="UTF-8">
 <title>Insert title here</title> 
+ <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
 </head>
 <body>
  
 
 
-<h3> <a href="MemberJoinForm.me">회원가입</a></h3>
-<h3> <a href="MemberLoginForm.me">로그인</a></h3>
-<h3> <a href="MemberLogout.me">로그아웃</a></h3>
+ <div id="naver_id_login"></div>
+ 
+  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
+  <script type="text/javascript">
+  	var naver_id_login = new naver_id_login("LQgI_KqqDNAMZNve6EbO", "http://localhost:8080/uhmat_project/member/naver_callback.jsp");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 2,40);
+  	naver_id_login.setDomain(".service.com");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  	
+ 
+  </script>
+
 <c:choose>
 			<c:when test="${empty sessionScope.sEmail}">
 				<a href="MemberLoginForm.me">로그인</a> | <a href="MemberJoinForm.me">회원가입</a>
