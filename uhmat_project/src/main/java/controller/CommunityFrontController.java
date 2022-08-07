@@ -10,17 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MateListAction;
 import action.MateWriteProAction;
 import vo.ActionForward;
 
-/**
- * Servlet implementation class CommunityFrontController
- */
 @WebServlet("*.mate")
 public class CommunityFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("깃 이놈");
 		System.out.println("CommunityFrontController");
 		request.setCharacterEncoding("UTF-8");	
 	
@@ -34,16 +31,28 @@ public class CommunityFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		// ----------------------------------------------------------------
+		// 리스트를 요청하는 서블릿(/MateWriteForm.mate) 요청
+		if(command.equals("/MateList.mate")) {
+			action = new MateListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("MateListProAction 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+			
+		// -----------------------------------------------------------------	
 		// 글쓰기 폼을 요청하는 서블릿(/MateWriteForm.mate) 요청
-		if(command.equals("/MateWriteForm.mate")) {
+		} else if(command.equals("/MateWriteForm.mate")) {
 			forward = new ActionForward();
 			forward.setPath("community/mate_write.jsp");
 			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
 			
 		} else if(command.equals("/MateWritePro.mate")) {
 			// MateWriteProAction 클래스 인스턴스 생성 후 execute() 메서드 호출
+			action = new MateWriteProAction();
 			try {
-				action = new MateWriteProAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				System.out.println("MateWriteProAction 오류 - " + e.getMessage());
