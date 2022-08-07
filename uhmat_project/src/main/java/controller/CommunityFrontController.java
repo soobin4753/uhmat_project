@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MateDetailAction;
 import action.MateListAction;
 import action.MateWriteProAction;
 import vo.ActionForward;
@@ -41,7 +42,6 @@ public class CommunityFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			
 		// -----------------------------------------------------------------	
 		// 글쓰기 폼을 요청하는 서블릿(/MateWriteForm.mate) 요청
 		} else if(command.equals("/MateWriteForm.mate")) {
@@ -50,7 +50,6 @@ public class CommunityFrontController extends HttpServlet {
 			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
 			
 		} else if(command.equals("/MateWritePro.mate")) {
-			// MateWriteProAction 클래스 인스턴스 생성 후 execute() 메서드 호출
 			action = new MateWriteProAction();
 			try {
 				forward = action.execute(request, response);
@@ -58,11 +57,18 @@ public class CommunityFrontController extends HttpServlet {
 				System.out.println("MateWriteProAction 오류 - " + e.getMessage());
 				e.printStackTrace();
 						}
+		// ------------------------------------------------------------------
+		} else if(command.equals("/MateDetail.mate")) {
+			action = new MateDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("MateDetailAction 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
 			
 		}
 		
-		
-	
 		// ---------------------------------------------------------------------------
 		if(forward != null) { // ActionForward 객체가 null 이 아닐 경우에만 포워딩 작업 수행
 			// Redirect 방식 vs Dispatcher 방식 판별하여 각 방식에 대한 포워딩 작업 수행

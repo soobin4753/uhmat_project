@@ -72,8 +72,6 @@ public class CommunityDAO {
 			
 			try {
 				// 답글에 대한 처리 과정 추가
-				// => 참조글번호(board_re_ref) 기준 내림차순
-				//    순서번호(board_re_seq) 기준 오름차순
 				String sql = "SELECT * FROM community_mate ORDER BY idx desc LIMIT ?,?";
 						
 				pstmt = con.prepareStatement(sql);
@@ -82,12 +80,12 @@ public class CommunityDAO {
 				
 				rs = pstmt.executeQuery();
 				
-				// 전체 게시물을 저장할 ArrayList<BoardDTO> 객체 생성
+				// 전체 게시물을 저장할 ArrayList<MateDTO> 객체 생성
 				mateList = new ArrayList<MateDTO>();
 				
 				// while 문을 사용하여 조회 결과에 대한 반복 작업 수행
 				while(rs.next()) {
-					// 1개 게시물 정보를 저장할 BoardDTO 객체 생성
+					// 1개 게시물 정보를 저장할 MateDTO 객체 생성
 					MateDTO mate = new MateDTO();
 					// 게시물 정보 저장
 					mate.setIdx(rs.getInt("idx"));
@@ -98,7 +96,7 @@ public class CommunityDAO {
 					mate.setDatetime(rs.getTimestamp("datetime"));
 					System.out.println(mate);
 					
-					// 전체 게시물 정보를 저장하는 ArrayList 객체에 1개 게시물 정보 BoardDTO 객체 추가
+					// 전체 게시물 정보를 저장하는 ArrayList 객체에 1개 게시물 정보 MateDTO 객체 추가
 					mateList.add(mate);
 				}
 				
@@ -161,6 +159,64 @@ public class CommunityDAO {
 			
 			
 			return insertCount;
+		}
+		// -------------------------------------------------------------------------------
+		// 조회수 증가 작업을 처리하는 increaseReadcount() 메서드
+		public void increaseReadcount(int idx) {
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "UPDATE community_mate SET readcount=readcount+1 WHERE idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - increaseReadcount() : " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			
+		}
+		
+		// 1개 게시물의 상세 정보 조회 작업 수행하는 getMate() 메서드
+		public MateDTO getMate(int idx) {
+
+			MateDTO mate = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT * FROM community_mate WHERE idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					mate = new MateDTO();
+					mate.setIdx(rs.getInt("idx"));
+					mate.setNickname(rs.getString("nickname"));
+					mate.setSubject(rs.getString("subject"));
+					mate.setContent(rs.getString("content"));
+					mate.setReadcount(rs.getInt("readcount"));
+					mate.setDatetime(rs.getTimestamp("datetime"));
+					System.out.println(mate);
+				}
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - getMate() : " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			
+			return mate;
 		}
 		
 		
