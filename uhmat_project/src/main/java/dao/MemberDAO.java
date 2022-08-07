@@ -12,6 +12,7 @@ import vo.MemberDTO;
 
 import static db.JdbcUtil.*;
 
+
 public class MemberDAO {
 	private static MemberDAO instance = new MemberDAO();
 	private static Connection con;

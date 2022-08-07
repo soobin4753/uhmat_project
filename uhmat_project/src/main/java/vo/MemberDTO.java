@@ -30,12 +30,7 @@ public class MemberDTO {
 	private String icon;
 	
 	
-	@Override
-	public String toString() {
-		return "MemberDTO [email=" + email + ", name=" + name + ", passwd=" + passwd + ", nickName=" + nickName
-				+ ", birthdate=" + birthdate + ", hiredate=" + hiredate + ", postCode=" + postCode + ", address1="
-				+ address1 + ", address2=" + address2 + ", icon=" + icon + "]";
-	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -92,12 +87,16 @@ public class MemberDTO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+
 	public String getIcon() {
 		return icon;
 	}
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
+
+	
+
 
 	 
 	

@@ -9,7 +9,7 @@
 </head>
 <body>
  
-<h3>hello</h3> <h3>World</h3> <h3>!</h3>
+
 
 <h3> <a href="MemberJoinForm.me">회원가입</a></h3>
 <h3> <a href="MemberLoginForm.me">로그인</a></h3>
@@ -24,6 +24,22 @@
 				<%-- 세션 아이디가 "admin" 일 때만 관리자페이지 링크("AdminMain.me") 표시 --%>
 				<c:if test="${sessionScope.sEmail eq 'admin'}"> | <a href="AdminMain.me">관리자페이지</a></c:if>
 			</c:otherwise>
-		</c:choose>
+</c:choose>
+
+ <nav>
+ 	<details> <!-- 음식카테고리 리스트 -->
+ 		<summary>음식카테고리</summary>
+ 		<a href="RestaurantInfo.re">음식으로 보기</a>
+ 		<a href="ReviewList.re">리뷰로 보기</a>
+ 		<a href="#">지도로 보기</a>
+ 	</details>
+ </nav>
+<h3> <a href="NoticeList.sc">Notice</a></h3>
+<h3> <a href="FAQList.sc">FAQ</a></h3>
+ <h3><a href="MateWriteForm.mate">글쓰기</a></h3>
+<h3><a href="MateList.mate">글목록</a></h3>
+
+
+
 </body>
 </html>   
