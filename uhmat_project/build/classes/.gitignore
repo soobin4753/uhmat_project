@@ -1,8 +1,14 @@
 
-/dao/
 /vo/
 /action/
-/controller/
 /svc/
+/dao/
 /controller/
+/dao/
+/db/
+/mail/
+/svc/
+/vo/
+
+
 
