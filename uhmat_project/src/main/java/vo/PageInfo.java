@@ -8,6 +8,7 @@ public class PageInfo {
 	private int endPage;
 	private int startPage;
 	private int listCount;
+	
 	public PageInfo(int pageNum, int maxPage, int endPage, int startPage, int listCount) {
 		super();
 		PageNum = pageNum;
