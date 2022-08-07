@@ -12,7 +12,10 @@
 
 <h3> <a href="MemberJoinFrom.me">회원가입</a></h3>
 <h3> <a href="MemberLoginFrom.me">로그인</a></h3>
+<h3> <a href="NoticeList.sc">Notice</a></h3>
+<h3> <a href="FAQList.sc">FAQ</a></h3>
  <h3><a href="MateWriteForm.mate">글쓰기</a></h3>
 <h3><a href="MateList.mate">글목록</a></h3>
+
 </body>
 </html>   

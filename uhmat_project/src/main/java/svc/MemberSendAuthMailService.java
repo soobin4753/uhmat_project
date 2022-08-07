@@ -1,7 +1,7 @@
 package svc;
 
 import dao.MemberDAO;
-import static db.JdbcUtill.*;  
+import static db.JdbcUtil.*;  
  
 import java.sql.Connection;  
   

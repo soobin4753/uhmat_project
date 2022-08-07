@@ -1,8 +1,8 @@
 package svc;
 
 import java.sql.Connection;
-import static db.JdbcUtill.close;
-import static db.JdbcUtill.getConnection;
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.getConnection;
 import dao.MemberDAO;
 
 public class MemberCheckDuplicateIdService {
