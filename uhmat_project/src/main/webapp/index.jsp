@@ -19,11 +19,11 @@
  		<a href="#">지도로 보기</a>
  	</details>
  </nav>
+
 <h3> <a href="NoticeList.sc">Notice</a></h3>
 <h3> <a href="FAQList.sc">FAQ</a></h3>
  <h3><a href="MateWriteForm.mate">글쓰기</a></h3>
 <h3><a href="MateList.mate">글목록</a></h3>
-
 
 </body>
 </html>   

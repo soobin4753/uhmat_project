@@ -18,7 +18,7 @@ public class ReviewBoardDTO {
 	private String res_name;
 	private String nickname;
 	private String subject;
-	private String photoName;
+	private String photo;
 	private String content;
 	private int likes;
 	private float rating;
@@ -47,11 +47,11 @@ public class ReviewBoardDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getPhotoName() {
-		return photoName;
+	public String getPhoto() {
+		return photo;
 	}
-	public void setPhotoName(String photoName) {
-		this.photoName = photoName;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public String getContent() {
 		return content;
@@ -74,7 +74,7 @@ public class ReviewBoardDTO {
 	@Override
 	public String toString() {
 		return "ReviewBoardDTO [idx=" + idx + ", res_name=" + res_name + ", nickname=" + nickname + ", subject="
-				+ subject + ", photoName=" + photoName + ", content=" + content + ", likes=" + likes + ", rating="
+				+ subject + ", photo=" + photo + ", content=" + content + ", likes=" + likes + ", rating="
 				+ rating + "]";
 	}
 	
