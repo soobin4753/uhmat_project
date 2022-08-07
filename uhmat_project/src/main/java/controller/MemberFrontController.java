@@ -9,61 +9,90 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberChechDuplicateIdAction;
-import action.MemberJoinProAction;
-import action.MemberLoginProAction;
-import action.MemberLogoutAction;
-import action.MemberSendAuthMailAction;
+import action.member.MemberAuthAction;
+import action.member.MemberChechDuplicateEmailAction;
+import action.member.MemberChechDuplicateNickNameAction;
+import action.member.MemberJoinProAction;
+import action.member.MemberLoginProAction;
+import action.member.MemberLogoutAction;
+import action.member.MemberSendAuthMailAction;
 import vo.ActionForward;
+
 @WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
+	
+		
+		
+	
 
 		String command = request.getServletPath();
 		System.out.println(command);
-		ActionForward forward = null;
+		ActionForward forward = null; 
 		Action action = null;
-		
+
 		if (command.equals("/MemberJoinForm.me")) {
-			forward= new ActionForward();
-			forward.setPath("/member/memberForm.jsp");
-			forward.setRedirect(true);
-		}else if (command.equals("/MemberJoinPro.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/joinForm.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/MemberJoinPro.me")) {
 			try {
-				action =new MemberJoinProAction(); 
-				forward =action.execute(request, response);
+				action = new MemberJoinProAction();
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
-		}else if(command.equals("/CheckDuplicateId.auth")) {
-			action = new MemberChechDuplicateIdAction();
+			}
+		} else if (command.equals("/MemberCheckNickNameForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/checkNickName.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/MemberCheckEmailForm.me")) {
+			forward = new ActionForward();
+			forward.setPath("/member/checkEmail.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/CheckDuplicateNickName.me")) {
 			try {
+				action = new MemberChechDuplicateNickNameAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/SendAuthMail.auth")) {
+		} else if (command.equals("/CheckDuplicateEmail.me")) {
+			try {
+				action = new MemberChechDuplicateEmailAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/SendAuthMail.me")) {
 			try {
 				action = new MemberSendAuthMailAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MemberLoginForm.auth")) {
+		} else if (command.equals("/MemberAuth.me")) {
+			action = new MemberAuthAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MemberLoginForm.me")) {
 			forward = new ActionForward();
-			forward.setPath("member/login_form.jsp");
+			forward.setPath("/member/loginForm.jsp");
 			forward.setRedirect(false);
-		} else if(command.equals("/MemberLoginPro.auth")) {
+		} else if (command.equals("/MemberLoginPro.me")) {
 			try {
 				action = new MemberLoginProAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberLogout.auth")) {
+		} else if (command.equals("/MemberLogout.me")) {
 			try {
 				action = new MemberLogoutAction();
 				forward = action.execute(request, response);
@@ -71,7 +100,8 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
@@ -80,9 +110,11 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}
 	}
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		doProcess(request, response);
 	}
 
