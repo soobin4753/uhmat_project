@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.PrintWriter;
 import java.util.Date;
@@ -14,11 +14,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import action.Action;
+
 import javax.servlet.http.HttpServletResponse;
 
 import mail.GenerateUserAuthenticationCode;
 import mail.GmailSMTPAuthenticator;
-import svc.MemberSendAuthMailService;
+import svc.member.MemberSendAuthMailService;
 import vo.ActionForward;
 
 public class MemberSendAuthMailAction implements Action {
@@ -30,7 +33,7 @@ public class MemberSendAuthMailAction implements Action {
 		ActionForward forward = null;
 		
 		// 아이디, 이메일 파라미터값 가져오기
-		String id = request.getParameter("id");
+		
 		String email = request.getParameter("email");
 
 		// ---------------------------------------------------------------------------------
@@ -40,12 +43,12 @@ public class MemberSendAuthMailAction implements Action {
 		System.out.println("인증코드 : " + authCode);
 		// ---------------------------------------------------------------------------------
 		// 인증코드를 메일로 발송 후 발송 성공 시 DB auth_code 테이블에 아이디, 인증코드 추가
-		String sender = "ytlee@itwillbs.co.kr"; // 보내는 사람 주소(관리자 메일)
+		String sender = "uhmat@naver.com"; // 보내는 사람 주소(관리자 메일)
 		String receiver = email; // 받는 사람 주소
-		String subject = "[아이티윌] 아이티윌 가입 인증 메일입니다."; // 메일 제목
+		String subject = "[어맛] 어디가맛집이고 가입 인증 메일입니다."; // 메일 제목
 		// 메일 본문은 하이퍼링크를 통해 사용자가 클릭하면 인증페이지 요청되도록 설정
 		// => 하이퍼링크를 통해 MemberAuth.auth 서블릿 주소를 요청하고 파라미터로 아이디, 인증코드 전달
-		String content = "<a href='http://localhost:8080/StudyJSP/MemberAuth.auth?id=" + id + "&authCode=" + authCode + "'><b>인증하려면 클릭하세요</b></a>"; // 메일 본문
+		String content = "<a href='http://localhost:8080/uhmat_project/MemberAuth.me?email=" + email + "&authCode=" + authCode + "'><b>인증하려면 클릭하세요</b></a>"; // 메일 본문
 
 		try {
 			// ---------------- 메일 전송을 위한 설정 작업 -----------------
@@ -79,7 +82,7 @@ public class MemberSendAuthMailAction implements Action {
 			// 전송할 메일에 대한 정보 설정
 			// 1. 발신자 정보 설정
 			// => 단, 스팸 메일 정책으로 인해 상용 메일 사이트(구글, 네이버 등)는 발신자 주소 변경 불가능
-			Address senderAddress = new InternetAddress(sender, "아이티윌");
+			Address senderAddress = new InternetAddress(sender, "어맛");
 			// 2. 수신자 정보 설정
 			Address receiverAddress = new InternetAddress(receiver);
 			// 3. Message 객체를 통해 전송할 메일에 대한 내용 정보 설정
@@ -103,7 +106,7 @@ public class MemberSendAuthMailAction implements Action {
 			
 			// 발송 성공 시 DB auth_code 테이블에 아이디, 인증코드 추가
 			MemberSendAuthMailService service = new MemberSendAuthMailService();
-			boolean isRegistSuccess = service.registAuthCode(id, authCode); 
+			boolean isRegistSuccess = service.registAuthCode(email, authCode); 
 			
 			if(!isRegistSuccess) {
 				response.setContentType("text/html; charset=UTF-8");
@@ -113,14 +116,16 @@ public class MemberSendAuthMailAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			} else {
-//				forward = new ActionForward();
-//				forward.setPath(")
+				
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('인증코드 등록 성공!')");
-				out.println("history.back()");
+				
 				out.println("</script>");
+				forward = new ActionForward();
+				forward.setPath("MemberLoginForm.me");
+				forward.setRedirect(false);
 			}
 			
 		} catch(Exception e) {

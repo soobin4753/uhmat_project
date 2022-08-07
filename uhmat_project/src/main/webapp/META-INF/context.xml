@@ -24,7 +24,7 @@ Resource 태그를 사용하여 DBCP 정보 설정
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/mvc_board2"
+		url="jdbc:mysql://localhost:3306/uhmat"
 		username="root"
 		password="1234"
 		maxActive="500"

@@ -1,13 +1,13 @@
-package svc;
+package svc.member;
 
 import dao.MemberDAO;
-import static db.JdbcUtill.*;  
+import static db.JdbcUtil.*;  
  
 import java.sql.Connection;  
   
 public class MemberSendAuthMailService {
 
-	public boolean registAuthCode(String id, String authCode) {
+	public boolean registAuthCode(String emial, String authCode) {
 		boolean isRegistSuccess = false;
 		
 		Connection con = getConnection();
@@ -16,7 +16,7 @@ public class MemberSendAuthMailService {
 		
 		// MemberDAO 객체의 registAuthCode() 메서드를 호출하여 인증코드 등록 작업 수행
 		// => 파라미터 : 아이디, 인증코드   리턴타입 : int(registCount)
-		int registCount = dao.registAuthCode(id, authCode);
+		int registCount = dao.registAuthCode(emial, authCode);
 		
 		if(registCount > 0) {
 			commit(con);
