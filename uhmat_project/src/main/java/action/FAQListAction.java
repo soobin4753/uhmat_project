@@ -13,14 +13,6 @@ public class FAQListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		System.out.println("NoticeListAction-execute");
 		ActionForward forward = null;
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-=======
->>>>>>> master
-=======
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 		// 페이징 처리를 위한 변수 선언
 		int pageNum = 1; // 현재페이지 번호
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 수
@@ -34,14 +26,7 @@ public class FAQListAction implements Action {
 		//페이징 처리에 필요한 전체 게시물 갯수 조회 작업 요청
 		FAQListService service = new FAQListService();
 		int listCount = service.getListCount();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		
->>>>>>> master
-=======
-		
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
+
 //		System.out.println("전체 게시물 수 " + listCount);
 		
 		// 1. 현재 페이지에서 표시할 전체 페이지 수 계산

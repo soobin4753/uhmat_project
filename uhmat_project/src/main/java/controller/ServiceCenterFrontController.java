@@ -134,13 +134,7 @@ public class ServiceCenterFrontController extends HttpServlet {
 				}
 		
 		//---------------------관리자가 답변-----------------------------------------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-		// 관리자 작성
-=======
->>>>>>> master
-=======
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
+
 		} else if(command.equals("/FAQDetailReply.sc")) {
 			try {
 				action = new FAQDetailReplyAction();
@@ -149,8 +143,7 @@ public class ServiceCenterFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 			
 		// 관리자 삭제	
 		} else if(command.equals("/FAQDetailReplyDelete.sc")) {
@@ -162,12 +155,9 @@ public class ServiceCenterFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-=======
-		} 
->>>>>>> master
-=======
-		} 
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
+
+		
+
 		
 		
 		//--------------------------------------------------------------------

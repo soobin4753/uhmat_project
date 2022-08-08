@@ -1,27 +1,6 @@
 package dao;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
->>>>>>> master
 import static db.JdbcUtil.*;
-=======
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
-
-import static db.JdbcUtil.*;
-
-
-<<<<<<< HEAD
-=======
->>>>>>> master
-
->>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
