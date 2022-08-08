@@ -15,10 +15,11 @@ public class FAQDeleteAction implements Action {
 		ActionForward forward = null;
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
+
+		
 		FAQDeleteService service = new FAQDeleteService();
 		boolean deleteSuccess = service.removeFAQ(idx);
 //		System.out.println("deleteSuccess : " + deleteSuccess);
-
 		boolean deleteReplySuccess = false;
 
 		
@@ -31,14 +32,22 @@ public class FAQDeleteAction implements Action {
 			out.println("</script>");
 
 		} else {
-			deleteReplySuccess = service.removeReplyFAQ(idx);
-			System.out.println("deleteSuccess : " + deleteSuccess);
+			boolean checkReply = service.checkReply(idx);
+			
+			if(!checkReply) { // 댓글이 없을 경우
+				deleteReplySuccess = true;
+			} else { // 댓글이 있을 경우
+				deleteReplySuccess = service.removeReplyFAQ(idx);
+	//			System.out.println("deleteSuccess : " + deleteSuccess);
+			}
+
 		}
 		if(!deleteReplySuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('글 삭제 실패')");
+
+			out.println("alert('글 삭제 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 

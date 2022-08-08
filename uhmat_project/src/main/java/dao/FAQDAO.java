@@ -171,12 +171,21 @@ public class FAQDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
+<<<<<<< HEAD
+			String sql = "UPDATE FAQBoard SET nickname=?, subject=?, content=?, category=? WHERE idx=?";
+=======
 			String sql = "UPDATE FAQBoard SET nickname=?, subject=?, content=? WHERE idx=?";
+>>>>>>> master
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, faq.getNickname());
 			pstmt.setString(2, faq.getSubject());
 			pstmt.setString(3, faq.getContent());
+<<<<<<< HEAD
+			pstmt.setString(4, faq.getCategory());
+			pstmt.setInt(5, faq.getIdx());
+=======
 			pstmt.setInt(4, faq.getIdx());
+>>>>>>> master
 			
 			updateCount = pstmt.executeUpdate();
 			System.out.println(updateCount);

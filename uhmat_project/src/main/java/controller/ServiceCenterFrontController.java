@@ -134,6 +134,10 @@ public class ServiceCenterFrontController extends HttpServlet {
 				}
 		
 		//---------------------관리자가 답변-----------------------------------------------
+<<<<<<< HEAD
+		// 관리자 작성
+=======
+>>>>>>> master
 		} else if(command.equals("/FAQDetailReply.sc")) {
 			try {
 				action = new FAQDetailReplyAction();
@@ -142,7 +146,21 @@ public class ServiceCenterFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
+			
+		// 관리자 삭제	
+		} else if(command.equals("/FAQDetailReplyDelete.sc")) {
+			try {
+				action = new FAQDetailReplyDeleteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+=======
 		} 
+>>>>>>> master
 		
 		
 		//--------------------------------------------------------------------
