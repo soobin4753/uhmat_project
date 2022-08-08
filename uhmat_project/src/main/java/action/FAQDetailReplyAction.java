@@ -19,10 +19,17 @@ public class FAQDetailReplyAction implements Action {
 		String nickname = request.getParameter("nickname");
 		String answer = request.getParameter("answer"); 
 		
+<<<<<<< HEAD
+//		System.out.println("answer : " + request.getParameter("answer"));
+//		System.out.println("nicknaem : " + request.getParameter("nickname"));
+//		System.out.println(Integer.parseInt(request.getParameter("pageNum")));
+//		System.out.println(Integer.parseInt(request.getParameter("idx")));
+=======
 		System.out.println("answer : " + request.getParameter("answer"));
 		System.out.println("nicknaem : " + request.getParameter("nickname"));
 		System.out.println(Integer.parseInt(request.getParameter("pageNum")));
 		System.out.println(Integer.parseInt(request.getParameter("idx")));
+>>>>>>> master
 		
 		FAQDetailReplyService service = new FAQDetailReplyService();
 		

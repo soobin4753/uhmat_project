@@ -13,8 +13,15 @@ public class FAQDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		System.out.println("FAQDetailAction - execute");
 		ActionForward forward = null;
+<<<<<<< HEAD
+		
+		int idx = Integer.parseInt(request.getParameter("idx"));
+//		System.out.println("idx : " + idx);
+		
+=======
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println("idx : " + idx);
+>>>>>>> master
 		FAQDetailService service = new FAQDetailService();
 		
 		service.increaseReadcount(idx);

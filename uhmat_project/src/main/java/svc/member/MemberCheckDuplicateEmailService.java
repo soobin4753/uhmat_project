@@ -4,7 +4,12 @@ import static db.JdbcUtil.close;
 import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
+<<<<<<< HEAD:uhmat_project/src/main/java/svc/MemberCheckDuplicateIdService.java
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.getConnection;
+=======
 
+>>>>>>> master:uhmat_project/src/main/java/svc/member/MemberCheckDuplicateEmailService.java
 import dao.MemberDAO;
 
 public class MemberCheckDuplicateEmailService {
