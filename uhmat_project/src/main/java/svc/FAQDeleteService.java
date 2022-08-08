@@ -1,0 +1,56 @@
+package svc;
+
+import java.sql.*;
+
+import dao.*;
+import db.*;
+
+public class FAQDeleteService {
+
+	public boolean removeFAQ(int idx) {
+		System.out.println("FAQDeleteService - removeFAQ");
+		boolean deleteSuccess = false;
+		
+		Connection con = JdbcUtil.getConnection();
+		
+		FAQDAO dao = FAQDAO.getInstance();
+		
+		dao.setConnection(con);
+		
+		deleteSuccess = dao.deleteFAQ(idx);
+		System.out.println("deleteSuccess : "+ deleteSuccess);
+		
+		if(!deleteSuccess) {
+			JdbcUtil.rollback(con);
+		} else {
+			JdbcUtil.commit(con);
+		}
+		
+		return deleteSuccess;
+	}
+
+
+	public boolean removeReplyFAQ(int idx) {
+		boolean deleteReplySuccess = false;
+		
+		Connection con = JdbcUtil.getConnection();
+		
+		FAQReplyDAO dao = FAQReplyDAO.getInstance();
+		
+		dao.setConnection(con);
+		
+		deleteReplySuccess = dao.deleteReplyFAQ(idx);
+		
+		if(!deleteReplySuccess) {
+			JdbcUtil.rollback(con);
+		} else {
+			JdbcUtil.commit(con);
+		}
+		
+		JdbcUtil.close(con);
+		
+		return deleteReplySuccess;
+	}
+
+
+}

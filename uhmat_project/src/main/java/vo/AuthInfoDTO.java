@@ -9,14 +9,14 @@ CREATE TABLE auth_info (
 
 //인증코드를 관리하는 클래스 정의
 public class AuthInfoDTO {
-	private String id;
+	private String email;
 	private String authCode;
 	
-	public String getId() {
-		return id;
+	public String getEmail() {
+		return email;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getAuthCode() {
 		return authCode;
