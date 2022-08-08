@@ -1,6 +1,7 @@
 package action;
 
 
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import vo.ActionForward;
 import vo.MateDTO;
 
 
+
 public class MateWriteProAction implements Action {
 
 	@Override
@@ -18,7 +20,9 @@ public class MateWriteProAction implements Action {
 		System.out.println("MateWriteProAction");
 
 
+
 		// 포워딩 정보를 저장하는 ActionForward 타입 변수 선언
+
 		ActionForward forward = null;
 		
 		MateDTO mate = new MateDTO();

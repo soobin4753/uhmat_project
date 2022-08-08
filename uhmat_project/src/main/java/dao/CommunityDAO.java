@@ -1,7 +1,9 @@
 package dao;
 
 
+
 import static db.JdbcUtil.*;
+
 
 
 import java.sql.Connection;
@@ -9,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import java.util.ArrayList;
+
 
 
 import vo.MateDTO;
@@ -146,6 +150,7 @@ public class CommunityDAO {
 				
 				// 전달받은 데이터를 board 테이블에 INSERT
 
+
 				sql = "INSERT INTO community_mate VALUES(?,?,?,?,0,CURRENT_TIMESTAMP)";
 
 				pstmt = con.prepareStatement(sql);
@@ -159,8 +164,10 @@ public class CommunityDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 
+
 				System.out.println("SQL 구문 오류 발생! - mateInsertCount() - " + e.getMessage());
 			} finally {
+
 
 				close(rs);
 				close(pstmt);
