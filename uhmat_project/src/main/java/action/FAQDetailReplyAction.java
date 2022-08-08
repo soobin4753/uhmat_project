@@ -18,14 +18,12 @@ public class FAQDetailReplyAction implements Action {
 		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		String nickname = request.getParameter("nickname");
 		String answer = request.getParameter("answer"); 
-		
 
 //		System.out.println("answer : " + request.getParameter("answer"));
 //		System.out.println("nicknaem : " + request.getParameter("nickname"));
 //		System.out.println(Integer.parseInt(request.getParameter("pageNum")));
 //		System.out.println(Integer.parseInt(request.getParameter("idx")));
 
-		
 		FAQDetailReplyService service = new FAQDetailReplyService();
 		
 		boolean isWriteReplySuccess = service.registFAQDetailReply(idx, nickname, answer);

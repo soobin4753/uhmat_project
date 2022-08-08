@@ -13,6 +13,7 @@ public class FAQDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		System.out.println("FAQDetailAction - execute");
 		ActionForward forward = null;
+
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 //		System.out.println("idx : " + idx);

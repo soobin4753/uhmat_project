@@ -157,8 +157,6 @@ public class ServiceCenterFrontController extends HttpServlet {
 		}
 
 		
-
-		
 		
 		//--------------------------------------------------------------------
 		
