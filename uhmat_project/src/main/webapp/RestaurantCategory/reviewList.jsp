@@ -20,7 +20,7 @@
 				<c:choose>
 					<c:when test="${not empty reviewList and pageInfo.listCount gt 0}">
 						<c:forEach var="board" items="${reviewList}">
-							<tr>
+							<tr onclick="location.href='ReviewDetail.re?idx=' + ${board.idx}">
 								<td>${board.photo }</td>
 								<td>${board.idx }</td>
 								<td>${board.nickname }</td>

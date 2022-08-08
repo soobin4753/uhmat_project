@@ -48,7 +48,16 @@ public class RestaurantCategoryFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		}
+		} else if(command.equals("/ReviewDetail.re")) {
+			 try {
+				action = new ReviewDetailAction();
+				 forward = action.execute(request, response);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+
+		} 
 	
 		if (forward != null) {
 			if (forward.isRedirect()) {

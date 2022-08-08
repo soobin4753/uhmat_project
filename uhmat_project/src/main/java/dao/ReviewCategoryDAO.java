@@ -111,7 +111,40 @@ public class ReviewCategoryDAO {
 		return reviewList;
 	}
 
-
+	public ReviewBoardDTO selectReviewBoardList(int idx) {
+		ReviewBoardDTO dto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM reviewboard WHERE idx =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto = new ReviewBoardDTO();
+				dto.setIdx(rs.getInt("idx"));
+				dto.setContent(rs.getString("content"));
+				dto.setLikes(rs.getInt("likes"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPhoto(rs.getString("photo"));
+				dto.setRating(rs.getFloat("rating"));
+				dto.setRes_name(rs.getString("res_name"));
+				dto.setSubject(rs.getString("subject"));
+				
+				System.out.println(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL 구문작성 및 실행오류 - selectReviewBoardList(idx) - " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return dto;
+	}
+	
 	public int insertReview(ReviewBoardDTO dto) {
 		int insertCount = 0;
 		
