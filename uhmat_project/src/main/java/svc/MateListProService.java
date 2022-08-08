@@ -1,6 +1,6 @@
 package svc;
 
-import static db.JdbcUtill.*;
+import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;

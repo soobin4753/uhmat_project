@@ -5,7 +5,7 @@ import java.sql.Connection;
 import dao.CommunityDAO;
 import vo.MateDTO;
 
-import static db.JdbcUtill.*;
+import static db.JdbcUtil.*;
 
 public class MateDetailService {
 	

@@ -5,7 +5,7 @@ import java.util.*;
 
 import vo.*;
 
-import static db.JdbcUtill.*;
+import static db.JdbcUtil.*;
 
 public class ReviewCategoryDAO {
 	private static ReviewCategoryDAO instance = new ReviewCategoryDAO();
