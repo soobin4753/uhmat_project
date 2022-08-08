@@ -1,10 +1,9 @@
 package svc;
 
-import java.sql.Connection;
 
+import java.sql.Connection;
 import dao.CommunityDAO;
 import static db.JdbcUtil.*;
-
 import vo.MateDTO;
 
 public class MateWriteProService {
@@ -12,8 +11,6 @@ public class MateWriteProService {
 
 	public boolean registMate(MateDTO mate) {
 		System.out.println("MateWriteProService");
-
-
 //		System.out.println("깃은 왜 고친것만 커밋 될까?");
 
 		
