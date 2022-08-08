@@ -1,0 +1,62 @@
+package action.member;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import action.Action;
+import svc.member.MemberLoginProService;
+import vo.ActionForward;
+import vo.MemberDTO;
+
+public class MemberLoginProAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberLoginProAction");
+		
+		ActionForward forward = null;
+		
+//		String email = request.getParameter("email");
+//		String passwd = request.getParameter("passwd");
+	
+		MemberDTO member = new MemberDTO();
+		member.setEmail(request.getParameter("email"));
+		member.setPasswd(request.getParameter("passwd"));
+	
+		MemberLoginProService service = new MemberLoginProService();
+		boolean isAuthenticatedUser =service.isAuthenticatedUser(member); 
+		if(!isAuthenticatedUser) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('인증코드를 확인 하세요')");
+			out.println("history.back()");
+			out.println("</script>");
+		} else {
+			boolean isLoginSuccess = service.loginMember(member);
+			
+			if(!isLoginSuccess) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('아이디 또는 패스워드가 틀렸습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("sEmail", member.getEmail());
+				
+				forward = new ActionForward();
+				forward.setPath("index.jsp");
+				forward.setRedirect(true);
+			}
+		}
+	
+		
+		return forward;
+	}
+
+}
