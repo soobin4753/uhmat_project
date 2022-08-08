@@ -5,12 +5,23 @@ import java.sql.Connection;
 import dao.CommunityDAO;
 
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> 1dfa994be0f4873c5335a98d6c9eb8b74c8dac84
 
 import static db.JdbcUtil.*;
 
 
+<<<<<<< HEAD
 
+=======
+=======
+import static db.JdbcUtil.*;
+
+>>>>>>> master
+>>>>>>> 1dfa994be0f4873c5335a98d6c9eb8b74c8dac84
 import vo.MateDTO;
 
 public class MateWriteProService {

@@ -1,7 +1,10 @@
 /.metadata/
 
+<<<<<<< HEAD
 /action/
 /controller/
 /dao/
 /svc/
 /vo/
+=======
+>>>>>>> 1dfa994be0f4873c5335a98d6c9eb8b74c8dac84
