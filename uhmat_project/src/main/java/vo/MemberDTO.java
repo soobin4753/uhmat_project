@@ -89,12 +89,7 @@ public class MemberDTO {
 	}
 	
 
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", email=" + email + ", name=" + name + ", passwd=" + passwd + ", nick_name="
-				+ nick_name + ", birth_date=" + birth_date + ", spicy_degree=" + spicy_degree + ", hire_date="
-				+ hire_date + ", post_code=" + post_code + ", address1=" + address1 + ", address2=" + address2 + "]";
-	}
+	
 
 
 	public String getIcon() {

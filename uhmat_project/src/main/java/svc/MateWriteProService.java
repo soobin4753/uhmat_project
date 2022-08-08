@@ -5,15 +5,12 @@ import java.sql.Connection;
 import dao.CommunityDAO;
 
 
-<<<<<<< HEAD
+
 
 import static db.JdbcUtil.*;
 
 
-=======
-import static db.JdbcUtil.*;
 
->>>>>>> master
 import vo.MateDTO;
 
 public class MateWriteProService {

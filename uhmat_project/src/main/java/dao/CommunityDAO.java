@@ -1,18 +1,11 @@
 package dao;
 
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
->>>>>>> master
-import static db.JdbcUtil.*;
-=======
 
 import static db.JdbcUtil.*;
 
 
->>>>>>> master
+
+
 
 
 
