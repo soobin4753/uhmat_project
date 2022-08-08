@@ -5,9 +5,7 @@ import java.sql.Connection;
 import dao.CommunityDAO;
 
 
-
 import static db.JdbcUtil.*;
-
 
 import vo.MateDTO;
 
