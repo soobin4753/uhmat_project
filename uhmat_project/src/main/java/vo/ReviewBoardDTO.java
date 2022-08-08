@@ -18,7 +18,9 @@ public class ReviewBoardDTO {
 	private String res_name;
 	private String nickname;
 	private String subject;
+
 	private String photo;
+
 	private String content;
 	private int likes;
 	private float rating;
@@ -47,11 +49,13 @@ public class ReviewBoardDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+
 	public String getPhoto() {
 		return photo;
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+
 	}
 	public String getContent() {
 		return content;

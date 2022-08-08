@@ -1,12 +1,24 @@
 package dao;
 
+<<<<<<< HEAD
 import static db.JdbcUtil.*;
+=======
+
+
+import static db.JdbcUtil.*;
+
+
+>>>>>>> master
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+
 import java.util.ArrayList;
+
+
 
 import vo.MateDTO;
 
@@ -27,6 +39,7 @@ public class CommunityDAO {
 		public void setConnection(Connection con) {
 			this.con = con;
 		}
+
 		// ----------------------------------------------------------------------------------------
 		// 글 갯수 조회
 		// 전체 게시물 수를 조회할 mateCount() 메서드 정의
@@ -111,6 +124,7 @@ public class CommunityDAO {
 			
 			return mateList;
 		}
+
 		// -----------------------------------------------------------------------------------------
 		// 글쓰기 작업 수행
 		public int mateInsertCount(MateDTO mate) {
@@ -122,7 +136,7 @@ public class CommunityDAO {
 			
 			int num = 1; // 새 글 번호를 저장할 변수
 			
-			
+
 			try {
 				// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
 				// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
@@ -132,14 +146,17 @@ public class CommunityDAO {
 				
 				if(rs.next()) {
 					num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
-					
+
 				}
 				
 				// 사용 완료된 PreparedStatement 객체를 먼저 반환
 				close(pstmt);
 				
 				// 전달받은 데이터를 board 테이블에 INSERT
+
+
 				sql = "INSERT INTO community_mate VALUES(?,?,?,?,0,CURRENT_TIMESTAMP)";
+
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, mate.getNickname());
@@ -150,8 +167,12 @@ public class CommunityDAO {
 				insertCount = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
+
+
 				System.out.println("SQL 구문 오류 발생! - mateInsertCount() - " + e.getMessage());
 			} finally {
+
+
 				close(rs);
 				close(pstmt);
 			}
@@ -160,6 +181,7 @@ public class CommunityDAO {
 			
 			return insertCount;
 		}
+
 		// -------------------------------------------------------------------------------
 		// 조회수 증가 작업을 처리하는 increaseReadcount() 메서드
 		public void increaseReadcount(int idx) {
