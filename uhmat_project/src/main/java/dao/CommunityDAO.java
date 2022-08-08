@@ -1,26 +1,8 @@
 package dao;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
->>>>>>> master
-import static db.JdbcUtil.*;
-=======
->>>>>>> 1dfa994be0f4873c5335a98d6c9eb8b74c8dac84
 
 import static db.JdbcUtil.*;
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
->>>>>>> 1dfa994be0f4873c5335a98d6c9eb8b74c8dac84
 
 
 
