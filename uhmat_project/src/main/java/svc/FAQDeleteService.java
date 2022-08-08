@@ -23,9 +23,12 @@ public class FAQDeleteService {
 		if(!deleteSuccess) {
 			JdbcUtil.rollback(con);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 =======
 >>>>>>> master
+=======
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 		} else {
 			JdbcUtil.commit(con);
 		}
@@ -34,9 +37,13 @@ public class FAQDeleteService {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> master
+=======
+
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 	public boolean removeReplyFAQ(int idx) {
 		boolean deleteReplySuccess = false;
 		
@@ -60,6 +67,7 @@ public class FAQDeleteService {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public boolean checkReply(int idx) {
 		boolean checkReply = false;
 		
@@ -77,5 +85,7 @@ public class FAQDeleteService {
 	}
 =======
 >>>>>>> master
+=======
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 
 }

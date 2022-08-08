@@ -108,9 +108,12 @@
 			     	<tr>
 				     	<td>답변 : </td><td> ${reply.answer }</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				     	<td><input type="button" value="삭제" onclick="location.href='FAQDetailReplyDelete.sc?idx=${faq.idx}&pageNum=${param.pageNum}'"></td>
 =======
 >>>>>>> master
+=======
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 			     	</tr>
 			     </table>
 			<br>

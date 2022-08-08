@@ -6,6 +6,19 @@ import dao.CommunityDAO;
 import static db.JdbcUtil.*;
 import static db.JdbcUtil.*;
 
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+
+import static db.JdbcUtil.*;
+
+
+=======
+import static db.JdbcUtil.*;
+
+>>>>>>> master
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 import vo.MateDTO;
 
 public class MateWriteProService {

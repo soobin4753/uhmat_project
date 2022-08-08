@@ -14,6 +14,7 @@ public class FAQDetailAction implements Action {
 //		System.out.println("FAQDetailAction - execute");
 		ActionForward forward = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 //		System.out.println("idx : " + idx);
@@ -22,6 +23,10 @@ public class FAQDetailAction implements Action {
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		System.out.println("idx : " + idx);
 >>>>>>> master
+=======
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println("idx : " + idx);
+>>>>>>> 10b9fd608ca9e4a54c35035f699131a4a851f3d6
 		FAQDetailService service = new FAQDetailService();
 		
 		service.increaseReadcount(idx);
