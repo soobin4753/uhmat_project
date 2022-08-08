@@ -1,2 +1,7 @@
 /.metadata/
 
+/action/
+/controller/
+/dao/
+/svc/
+/vo/
