@@ -107,6 +107,10 @@
 			     <table>
 			     	<tr>
 				     	<td>답변 : </td><td> ${reply.answer }</td>
+<<<<<<< HEAD
+				     	<td><input type="button" value="삭제" onclick="location.href='FAQDetailReplyDelete.sc?idx=${faq.idx}&pageNum=${param.pageNum}'"></td>
+=======
+>>>>>>> master
 			     	</tr>
 			     </table>
 			<br>
