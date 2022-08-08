@@ -38,7 +38,10 @@ public class ReviewCategoryDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("SQL 구문 작성 및 실행 오류 - " + e.getMessage());
+
+			System.out.println("SQL 구문 작성 및 실행 오류 - selectReviewListCount()" + e.getMessage());
+
+
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -80,7 +83,11 @@ public class ReviewCategoryDAO {
 				dto.setRes_name(rs.getString("res_name"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setSubject(rs.getString("subject"));
-				dto.setPhotoName(rs.getString("photoNames"));
+
+
+				dto.setPhoto(rs.getString("photo"));
+
+
 				dto.setContent(rs.getString("content"));
 				dto.setLikes(rs.getInt("likes"));
 				dto.setRating(rs.getFloat("rating"));
@@ -91,7 +98,11 @@ public class ReviewCategoryDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("SQL 구문 작성 및 실행 오류 - " + e.getMessage());
+
+
+			System.out.println("SQL 구문 작성 및 실행 오류 selectReviewBoardList()- " + e.getMessage());
+
+
 		} finally {
 			close(rs);
 			close(pstmt);
@@ -99,5 +110,51 @@ public class ReviewCategoryDAO {
 		
 		return reviewList;
 	}
+
+
+	public int insertReview(ReviewBoardDTO dto) {
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int num = 1;
+		// 1. idx 값을 새 번호로 잡아주기
+		try {
+			String sql = "SELECT MAX(idx) FROM reviewboard";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+			
+			//pstmt,rs 사용완료후 반환
+			close(rs);
+			close(pstmt);
+			
+			//Insert작업 수행
+			sql = "INSERT INTO reviewboard VALUES(?,?,?,?,?,?,0,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, dto.getRes_name());
+			pstmt.setString(3, dto.getNickname());
+			pstmt.setString(4, dto.getSubject());
+			pstmt.setString(5, dto.getPhoto());
+			pstmt.setString(6, dto.getContent());
+			pstmt.setFloat(7, dto.getRating());
+			
+			insertCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("SQL구문 작성및 실행 오류 insertReview() - " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+
+
 	
 }
