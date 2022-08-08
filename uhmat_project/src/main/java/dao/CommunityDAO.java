@@ -1,10 +1,14 @@
 package dao;
 
+<<<<<<< HEAD
+import static db.JdbcUtil.*;
+=======
 
 
 import static db.JdbcUtil.*;
 
 
+>>>>>>> master
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -31,6 +31,23 @@ public class RestaurantCategoryFrontController extends HttpServlet {
 				
 				e.printStackTrace();
 			}
+
+
+		} else if (command.equals("/ReviewWriteForm.re")) {
+			
+			// 세션 값에 따라 처리 
+			forward = new ActionForward();
+			forward.setPath("RestaurantCategory/reviewWriteForm.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/ReviewWritePro.re")) {
+			 try {
+				action = new ReviewWriteProAction();
+				 forward = action.execute(request, response);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+
 		}
 	
 		if (forward != null) {

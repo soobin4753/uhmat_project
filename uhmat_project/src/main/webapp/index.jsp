@@ -11,6 +11,9 @@
 </head>
 <body>
 
+ 
+
+
 
  <div id="naver_id_login"></div>
  
@@ -39,6 +42,7 @@
 			</c:otherwise>
 </c:choose>
 
+
  <nav>
  	<details> <!-- 음식카테고리 리스트 -->
  		<summary>음식카테고리</summary>
@@ -47,6 +51,7 @@
  		<a href="#">지도로 보기</a>
  	</details>
  </nav>
+
 <h3> <a href="NoticeList.sc">Notice</a></h3>
 <h3> <a href="FAQList.sc">FAQ</a></h3>
  <h3><a href="MateWriteForm.mate">글쓰기</a></h3>
