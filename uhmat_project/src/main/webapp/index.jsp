@@ -11,12 +11,7 @@
 </head>
 <body>
 
-<<<<<<< HEAD
 
-
-=======
-<h3>hello, it's me</h3>
->>>>>>> 7993f2e3e70cd14c7e1636d38de022c45a2b2f9e
 
  <div id="naver_id_login"></div>
  
