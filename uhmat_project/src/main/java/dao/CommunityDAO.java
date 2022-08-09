@@ -9,10 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.CommentDTO;
-<<<<<<< HEAD
-=======
+
 import vo.CommunityTmiDTO;
->>>>>>> 11ad5614770e6d6b225373c9dd8fd5ba648437ca
+
 import vo.MateDTO;
 
 public class CommunityDAO {
@@ -264,8 +263,7 @@ public class CommunityDAO {
 		}
 		// --------------------------------------------------
 		public int deleteMate(int idx) {
-<<<<<<< HEAD
-=======
+
 
 			int deleteCount = 0;
 			
@@ -645,13 +643,11 @@ public class CommunityDAO {
 				e.printStackTrace();
 			}
 			
-			return deleteTmiCount;
-		}
->>>>>>> 11ad5614770e6d6b225373c9dd8fd5ba648437ca
+		
 
 			int deleteCount = 0;
 			
-			PreparedStatement pstmt = null;
+			
 			
 			try {
 				String sql = "DELETE FROM community_mate WHERE idx=?";
@@ -670,65 +666,7 @@ public class CommunityDAO {
 		}
 		// -----------------------------------------------------------------------------
 		// 댓글
-		public int insertReplyMate(CommentDTO mateComment) {
-			
-			int insertCount = 0;
-			
-			PreparedStatement pstmt = null, pstmt2 = null;
-			ResultSet rs = null;
-			
-			int num = 1;
-			
-			try {
-				// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
-				// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
-				String sql = "SELECT MAX(idx) FROM mate_reply";
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
-				}
-				
-				
-				// 기존 답글들에 대한 순서번호(re_seq) 증가 작업 처리
-				// => 원본글의 참조글번호(re_ref) 와 같고(같은 레코드들 중에서)
-				//    원본글의 순서번호(re_seq)보다 큰 레코드들의 순서번호를 1씩 증가시키기
-				sql = "UPDATE mate_reply SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
-				pstmt2 = con.prepareStatement(sql);
-				pstmt2.setInt(1, mateComment.getRe_ref());
-				pstmt2.setInt(2, mateComment.getRe_seq());
-				pstmt2.executeUpdate();
-				
-				// 답글을 mate_reply 테이블에 INSERT 작업
-				sql = "INSERT INTO mate_reply VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP,?)";
-				pstmt2 = con.prepareStatement(sql);
-				pstmt2.setInt(1, num);
-				pstmt2.setString(2, mateComment.getNickname());
-				pstmt2.setString(3, mateComment.getContent());
-				pstmt2.setInt(4, mateComment.getRe_ref());
-				pstmt2.setInt(5, mateComment.getRe_lev() + 1);
-				pstmt2.setInt(6, mateComment.getRe_seq() + 1);
-				pstmt2.setInt(7, mateComment.getBoard_idx());
-//				System.out.println(mateComment);
-				
-				insertCount = pstmt2.executeUpdate();
-				
-				// 22-08-09 미완성임
-				
-			} catch (SQLException e) {
-				System.out.println("SQL 구문 오류 - insertReplyMate() : " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(pstmt2);
-				close(pstmt);
-				close(rs);
-			}
-			
-			
-			
-			return insertCount;
-		}
+		
 		
 		
 		
