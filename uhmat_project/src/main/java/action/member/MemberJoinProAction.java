@@ -16,8 +16,6 @@ public class MemberJoinProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward =null;
-		
-		
 		 String email= request.getParameter("email");
 		 String name=request.getParameter("name");
 		 String passwd= request.getParameter("passwd");
@@ -53,11 +51,7 @@ public class MemberJoinProAction implements Action {
 			}
 			
 			return forward;
-		
-		
-		
-		
-	
+
 	}
 
 }

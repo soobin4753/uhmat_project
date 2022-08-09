@@ -55,7 +55,22 @@ public class CommunityFrontController extends HttpServlet {
 			forward.setPath("community/mate_write.jsp");
 			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
 			
+<<<<<<< HEAD
 		} else if(command.equals("/MateWritePro.co")) {
+=======
+
+		} else if(command.equals("/TmiWritePro.co")) {
+			// tmi 게시판의 글 쓰기 작업을 요청
+			try {
+				action = new TmiWirteProAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("TmiWriteProAction 오류 - " + e.getMessage());
+				e.printStackTrace();
+
+						}
+		} else if(command.equals("/MateWritePro.mate")) {
+>>>>>>> 11ad5614770e6d6b225373c9dd8fd5ba648437ca
 			action = new MateWriteProAction();
 			try {
 				forward = action.execute(request, response);
