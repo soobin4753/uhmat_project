@@ -1,11 +1,11 @@
 package svc;
 
+import static db.JdbcUtil.*;
+
 import java.sql.Connection;
 
 import dao.CommunityDAO;
 import vo.MateDTO;
-
-import static db.JdbcUtill.*;
 
 public class MateDetailService {
 	

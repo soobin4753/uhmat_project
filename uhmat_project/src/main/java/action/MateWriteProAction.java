@@ -14,7 +14,8 @@ public class MateWriteProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MateWriteProAction");
-
+//		System.out.println("깃 커밋 안 올라가져서 테스트");
+		
 		// 포워딩 정보를 저장하는 ActionForward 타입 변수 선언
 		ActionForward forward = null;
 		
@@ -24,6 +25,7 @@ public class MateWriteProAction implements Action {
 		mate.setSubject(request.getParameter("subject"));
 		mate.setContent(request.getParameter("content"));
 		System.out.println(mate);
+		
 		
 		MateWriteProService service = new MateWriteProService();
 		// 실제 비즈니스 작업 요청을 수행할 MateWriteProService 클래스의 인스턴스 생성 후
@@ -46,9 +48,10 @@ public class MateWriteProAction implements Action {
 		} else { // 글쓰기 성공 시
 			// 글목록 조회 비즈니스 로직을 수행하기 위한 MateList.mate 서블릿 주소 요청
 			forward = new ActionForward();
-			forward.setPath("MateList.mate");
+			forward.setPath("MateList.co");
 			forward.setRedirect(true);
 		}
+		
 		
 		return forward;
 	}

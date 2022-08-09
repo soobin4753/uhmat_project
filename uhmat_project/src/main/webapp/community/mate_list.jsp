@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h1>mate_list.jsp</h1>
 	<table border="1">
 		<!-- 게시물 목록 출력(단, 게시물이 하나라도 존재할 경우에만 출력) -->
@@ -74,6 +75,6 @@
 		</c:choose>
 		
 	</section>
-	
+
 </body>
 </html>

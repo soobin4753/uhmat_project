@@ -11,6 +11,8 @@ public class MateDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MateDetailAction");
+//		System.out.println("깃 커밋 안 올라가져서 테스트");
 		
 		ActionForward forward = null;
 		
@@ -31,7 +33,7 @@ public class MateDetailAction implements Action {
 		
 		// ActionForward 객체를 활용하여 mate 디렉토리의 mate_view.jsp 페이지 포워딩 설정
 		forward = new ActionForward();
-		forward.setPath("community/mate_view.jsp");
+		forward.setPath("community/mate_view.jsp?idx=" + idx);
 		forward.setRedirect(false);
 		
 		return forward;
