@@ -52,14 +52,15 @@ public class MemberNaverLogin extends HttpServlet {
 	    apiURL += "&state=" + state;
 	    String access_token = "";
 	    String refresh_token = "";
-	    System.out.println("apiURL="+apiURL);
+	    
+	    System.out.println("apiURL="+apiURL+"\n");
 	    try {
 	      URL url = new URL(apiURL);
 	      HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	      con.setRequestMethod("GET");
 	      int responseCode = con.getResponseCode();
 	      BufferedReader br;
-	      System.out.print("responseCode="+responseCode);
+	      System.out.print("responseCode="+responseCode+"\n");
 	      if(responseCode==200) { // 정상 호출
 	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	      } else {  // 에러 발생
@@ -72,17 +73,61 @@ public class MemberNaverLogin extends HttpServlet {
 	      }
 	      br.close();
 	      if(responseCode==200) {
-	    		
-	    		JSONParser parsing = new JSONParser();
+	    		System.out.println(res.toString()+"\n");
+	    	  JSONParser parsing = new JSONParser();
 	    		Object obj = parsing.parse(res.toString());
 	    		JSONObject jsonObj = (JSONObject)obj;
-	    		JSONObject resObj = (JSONObject)jsonObj.get("response");
-	  
-	    		String naverCode = (String)resObj.get("id");
-	    		String email = (String)resObj.get("email");
-	    		String name = (String)resObj.get("name");
-	    		String nickName = (String)resObj.get("nickname");
-	    		System.out.println(naverCode+ email +name+nickName);
+	    		access_token = (String)jsonObj.get("access_token");
+	    		refresh_token = (String)jsonObj.get("refresh_token");
+	    		String header = "Bearer " + access_token;
+	    	
+	    		if(access_token != null) { // access_token을 잘 받아왔다면
+	    			try {
+	    				String apiurl = "https://openapi.naver.com/v1/nid/me";
+	    				URL url2 = new URL(apiurl);
+	    				HttpURLConnection con2 = (HttpURLConnection)url2.openConnection();
+	    				con2.setRequestMethod("GET");
+	    				con2.setRequestProperty("Authorization", header);
+	    				int responseCode2 = con.getResponseCode();
+	    				BufferedReader br2;
+	    				if(responseCode2==200) { // 정상 호출
+	    				 br2 = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+	    				} else {  // 에러 발생
+	    				br2 = new BufferedReader(new InputStreamReader(con2.getErrorStream()));
+	    				}
+	    				String inputLine2;
+	    				StringBuffer res2 = new StringBuffer();
+	    				 while ((inputLine2 = br2.readLine()) != null) {
+	    				res2.append(inputLine2);
+	    				}
+	    				br2.close();
+	    				if(responseCode2==200) { // 정상 호출
+	    					System.out.println(res2.toString()+"\n");
+	    					JSONParser parsing2 = new JSONParser();
+	    			    	Object obj2 = parsing2.parse(res2.toString());
+	    			    	JSONObject jsonObj2 = (JSONObject)obj2;
+	    					JSONObject resObj2 = (JSONObject)jsonObj2.get("response");	        
+	    		    		
+	    					  
+	    		    		String naverCode = (String)resObj2.get("id");
+	    		    		String email = (String)resObj2.get("email");
+	    		    		String name = (String)resObj2.get("name");
+	    		    		String nickName = (String)resObj2.get("nickname");
+	    		    		String gender = (String)resObj2.get("gender");
+	    		    		String age = (String)resObj2.get("age");
+	    		    		String birthday = (String)resObj2.get("birthday");
+	    		    		String birthyear = (String)resObj2.get("birthyear");
+	    		    		String mobile = (String)resObj2.get("mobile");
+	    		    		System.out.println("네이버코드 = "+naverCode+ " 이메일 :"+ email 
+	    		    				+" 이름 : "+ name+" 닉네임 : "+nickName+" 성별 : "+ gender+" 나이 : "+age
+	    		    				+" 생일 : "+ birthyear+" 생일년도 : "+birthday+" 핸드폰 : "+ mobile);
+		    				}
+	    		    } catch (Exception e) {
+	    		    	e.printStackTrace();
+	    		    }
+	    		}
+	    		
+	    	
 	    	
 	      }
 	    } catch (Exception e) {
