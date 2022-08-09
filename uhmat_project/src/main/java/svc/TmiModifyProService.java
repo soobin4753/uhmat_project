@@ -32,7 +32,7 @@ public class TmiModifyProService {
 		
 		close(con);
 		
-		return isTmiWriter;
+		return isTmiWriter; 
 	}
 
 	// 글 수정 작업 요청을 위한 modifyBoard() 메서드 정의

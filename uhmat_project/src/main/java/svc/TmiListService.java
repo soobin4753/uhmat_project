@@ -51,7 +51,7 @@ public class TmiListService {
 		// 4. BoardDAO 객체의 selectTmiBoardList() 메서드를 호출하여 게시물 목록 조회
 		// => 파라미터 : 현재페이지번호(pageNum), 페이지 당 게시물 수(listLimit)
 		// 	  리턴타입 : ArrayList<CommunityDTO> getTmiboardList
-		tmiBoardList = dao.selectTmiBoardList(pageNum, listLimit);
+		tmiBoardList = dao.selectTmiBoardList(pageNum, listLimit); 
 		System.out.println(tmiBoardList);
 		
 		// 5. Connection 객체 반환 - 공통

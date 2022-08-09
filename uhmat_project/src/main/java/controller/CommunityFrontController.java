@@ -77,7 +77,12 @@ public class CommunityFrontController extends HttpServlet {
 			// tmi 게시판의 글 쓰기 작업을 요청
 			try {
 				action = new TmiWirteProAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("TmiWriteProAction 오류 - " + e.getMessage());
+				e.printStackTrace();
 
+						}
 		} else if(command.equals("/MateWritePro.mate")) {
 			action = new MateWriteProAction();
 			try {
