@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,9 +25,6 @@ public class MemberFrontController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 	
-		
-		
-	
 
 		String command = request.getServletPath();
 		System.out.println(command);
@@ -45,28 +43,43 @@ public class MemberFrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MemberCheckNickNameForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/checkNickName.jsp");
-			forward.setRedirect(false);
-		} else if (command.equals("/MemberCheckEmailForm.me")) {
-			forward = new ActionForward();
-			forward.setPath("/member/checkEmail.jsp");
-			forward.setRedirect(false);
-		} else if (command.equals("/CheckDuplicateNickName.me")) {
+		} 
+		else if (command.equals("/CheckDuplicateNickName.me")) {
+		   
 			try {
-				action = new MemberChechDuplicateNickNameAction();
-				forward = action.execute(request, response);
+				PrintWriter out = response.getWriter();
+		        boolean checkNick=true;
+		         try {
+		        	 MemberChechDuplicateNickNameAction nickNameCheckaction = new MemberChechDuplicateNickNameAction();
+		        	 checkNick = nickNameCheckaction.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        if(checkNick) {
+		            out.print("not-usable");
+		        } else {
+		            out.print("usable");
+		        }
+				   
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/CheckDuplicateEmail.me")) {
+		} 
+		else if (command.equals("/CheckDuplicateEmail.me")) {
+			boolean checkEmail=true;
+			PrintWriter out = response.getWriter();
 			try {
-				action = new MemberChechDuplicateEmailAction();
-				forward = action.execute(request, response);
+				MemberChechDuplicateEmailAction emailCheckaction = new MemberChechDuplicateEmailAction();
+				checkEmail = emailCheckaction.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	        if(checkEmail) {
+	            out.print("not-usable");
+	        } else {
+	            out.print("usable");
+	        }
 		} else if (command.equals("/SendAuthMail.me")) {
 			try {
 				action = new MemberSendAuthMailAction();
