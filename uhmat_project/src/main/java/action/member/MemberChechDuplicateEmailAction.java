@@ -3,14 +3,14 @@ package action.member;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.Action;
+
 import svc.member.MemberCheckDuplicateEmailService;
 import vo.ActionForward;
 
-public class MemberChechDuplicateEmailAction implements Action {
+public class MemberChechDuplicateEmailAction  {
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+	public boolean execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	System.out.println("MemberChechDuplicateEmailAction");
 		
 		ActionForward forward = null; 
@@ -22,13 +22,9 @@ public class MemberChechDuplicateEmailAction implements Action {
 		MemberCheckDuplicateEmailService service = new MemberCheckDuplicateEmailService();
 		boolean isDuplicate = service.checkDuplicateEmail(email);
 		
-		// ActionForward 객체를 사용하여 CheckDuplicateId.me 서블릿 주소 요청
-		// => 파라미터로 아이디와 검색결과 전달
-		forward = new ActionForward();
-		forward.setPath("MemberCheckEmailForm.me?email=" + email + "&isDuplicate=" + isDuplicate);
-		forward.setRedirect(true);
+	
 		
-		return forward;
+		return isDuplicate;
 	
 	}
 
