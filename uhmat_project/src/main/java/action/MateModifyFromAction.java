@@ -29,7 +29,7 @@ public class MateModifyFromAction implements Action {
 		
 		// board 디렉토리의 mate_modify.jsp 페이지로 포워딩
 		forward = new ActionForward();
-		forward.setPath("community/mate_modify.jsp");
+		forward.setPath("community/mate/mate_modify.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

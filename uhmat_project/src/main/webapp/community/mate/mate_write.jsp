@@ -12,7 +12,7 @@
 	<h1>community_mate.jsp</h1>
 		
 	
-		<form action="MateWritePro.mate" name="MateForm" method="post">
+		<form action="MateWritePro.co" name="MateForm" method="post">
 			
 			<table>
 

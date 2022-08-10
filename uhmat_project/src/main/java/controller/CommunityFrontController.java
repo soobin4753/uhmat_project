@@ -15,7 +15,6 @@ import action.MateDetailAction;
 import action.MateListAction;
 import action.MateModifyFromAction;
 import action.MateModifyProAction;
-import action.MateReplyListAction;
 import action.MateReplyWriteAction;
 import action.MateWriteProAction;
 import vo.ActionForward;
@@ -52,7 +51,7 @@ public class CommunityFrontController extends HttpServlet {
 		// 글쓰기 폼을 요청하는 서블릿(/MateWriteForm.co) 요청
 		} else if(command.equals("/MateWriteForm.co")) {
 			forward = new ActionForward();
-			forward.setPath("community/mate_write.jsp");
+			forward.setPath("community/mate/mate_write.jsp");
 			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
 			
 
@@ -98,7 +97,7 @@ public class CommunityFrontController extends HttpServlet {
 		// 글 삭제 폼 이동
 		} else if(command.equals("/MateDeleteForm.co")) {
 			forward = new ActionForward();
-			forward.setPath("community/mate_delete.jsp");
+			forward.setPath("community/mate/mate_delete.jsp");
 			forward.setRedirect(false);
 			
 		} else if(command.equals("/MateDeletePro.co")) {
@@ -113,10 +112,10 @@ public class CommunityFrontController extends HttpServlet {
 		// 댓글 폼 요청
 		} else if(command.equals("/MateReplyForm.co")) {
 			forward = new ActionForward();
-			forward.setPath("community/mate_replyForm.jsp");
+			forward.setPath("community/mate/mate_replyForm.jsp");
 			forward.setRedirect(false);
 		// 댓글 쓸기
-		} else if(command.equals("/MateReplyPro.co")){
+		} else if(command.equals("/MateReplyWrite.co")){
 			action = new MateReplyWriteAction();
 			try {
 				forward = action.execute(request, response);
@@ -125,16 +124,7 @@ public class CommunityFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		// 댓글 리스트
-		} else if(command.equals("/MateReplyList.co")) {
-			action = new MateReplyListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				System.out.println("MateReplyListAction 오류 - " + e.getMessage());
-				e.printStackTrace();
-			}
-					
-		}
+		} 
 		
 		// ---------------------------------------------------------------------------
 		if(forward != null) { // ActionForward 객체가 null 이 아닐 경우에만 포워딩 작업 수행

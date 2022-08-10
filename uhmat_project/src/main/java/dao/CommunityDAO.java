@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import vo.CommentDTO;
+import vo.MateReplyDTO;
 
 import vo.CommunityTmiDTO;
 
@@ -155,7 +155,7 @@ public class CommunityDAO {
 //				close(pstmt);
 				
 				// 전달받은 데이터를 board 테이블에 INSERT
-				sql = "INSERT INTO community_mate VALUES(?,?,?,?,0,CURRENT_TIMESTAMP)";
+				sql = "INSERT INTO community_mate VALUES(?,?,?,?,0,now())";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, mate.getNickname());
@@ -286,7 +286,7 @@ public class CommunityDAO {
 		}
 		// -----------------------------------------------------------------------------
 		// 댓글
-		public int insertReplyMate(CommentDTO mateComment) {
+		public int insertReplyMate(MateReplyDTO mateReply) {
 			
 			int insertCount = 0;
 			
@@ -306,27 +306,26 @@ public class CommunityDAO {
 					num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
 				}
 				
-				
 				// 기존 답글들에 대한 순서번호(re_seq) 증가 작업 처리
 				// => 원본글의 참조글번호(re_ref) 와 같고(같은 레코드들 중에서)
 				//    원본글의 순서번호(re_seq)보다 큰 레코드들의 순서번호를 1씩 증가시키기
-				sql = "UPDATE mate_reply SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
-				pstmt2 = con.prepareStatement(sql);
-				pstmt2.setInt(1, mateComment.getRe_ref());
-				pstmt2.setInt(2, mateComment.getRe_seq());
-				pstmt2.executeUpdate();
+//				sql = "UPDATE mate_reply SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
+//				pstmt2 = con.prepareStatement(sql);
+//				pstmt2.setInt(1, mateReply.getRe_ref());
+//				pstmt2.setInt(2, mateReply.getRe_seq());
+//				pstmt2.executeUpdate();
 				
 				// 답글을 mate_reply 테이블에 INSERT 작업
-				sql = "INSERT INTO mate_reply VALUES(?,?,?,?,?,?,CURRENT_TIMESTAMP,?)";
+				sql = "INSERT INTO mate_reply VALUES(?,?,?,?,?,?,now(),?)";
 				pstmt2 = con.prepareStatement(sql);
 				pstmt2.setInt(1, num);
-				pstmt2.setString(2, mateComment.getNickname());
-				pstmt2.setString(3, mateComment.getContent());
-				pstmt2.setInt(4, mateComment.getRe_ref());
-				pstmt2.setInt(5, mateComment.getRe_lev() + 1);
-				pstmt2.setInt(6, mateComment.getRe_seq() + 1);
-				pstmt2.setInt(7, mateComment.getBoard_idx());
-//				System.out.println(mateComment);
+				pstmt2.setString(2, mateReply.getNickname());
+				pstmt2.setString(3, mateReply.getContent());
+				pstmt2.setInt(4, num);
+				pstmt2.setInt(5, 0);
+				pstmt2.setInt(6, 0);
+				pstmt2.setInt(7, mateReply.getBoard_idx());
+//				System.out.println(mateReply);
 				
 				insertCount = pstmt2.executeUpdate();
 				
@@ -346,6 +345,57 @@ public class CommunityDAO {
 			return insertCount;
 		}
 		
+		
+		public ArrayList<MateReplyDTO> selectMateReply(int idx) {
+			System.out.println("CommunityDAO - selectMateReply");
+			
+			MateReplyDTO mateReply = null;
+			ArrayList<MateReplyDTO> mateReplyList = null;
+			
+			PreparedStatement pstmt  = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT * FROM mate_reply WHERE board_idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				
+				rs = pstmt.executeQuery();
+				
+				mateReplyList = new ArrayList<MateReplyDTO>();
+				while(rs.next()) {
+					
+					mateReply = new MateReplyDTO();
+					mateReply.setBoard_idx(rs.getInt("board_idx"));
+					mateReply.setContent(rs.getString("content"));
+					mateReply.setIdx(rs.getInt(idx));
+					mateReply.setNickname(rs.getString("nickname"));
+					mateReply.setRe_lev(rs.getInt("re_lev"));
+					mateReply.setRe_ref(rs.getInt("re_ref"));
+					mateReply.setRe_seq(rs.getInt("re_seq"));
+					mateReply.setDate(rs.getTimestamp("date"));
+					
+					mateReplyList.add(mateReply);
+					
+				}
+				
+				
+				System.out.println(mateReply);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			
+			
+			
+			return mateReplyList;
+		}
+		
+		// ============================================================
 		// TMI 댓글 메서드 시작
 		
 //		// TMI 댓글 작성 메서드
@@ -666,6 +716,7 @@ public class CommunityDAO {
 		}
 		// -----------------------------------------------------------------------------
 		// 댓글
+		
 		
 		
 		

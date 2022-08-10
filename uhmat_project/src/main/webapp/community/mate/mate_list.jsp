@@ -17,7 +17,7 @@
 			<c:when test="${not empty mateList and pageInfo.listCount gt 0 }">
 				<c:forEach var="mate" items="${mateList }">
 					<tr>
-						<td width="800" height="50"><a href="MateDetail.mate?idx=${mate.idx }&pageNum=${pageInfo.pageNum}">${mate.subject }</a> <br> 
+						<td width="800" height="50"><a href="MateDetail.co?idx=${mate.idx }&pageNum=${pageInfo.pageNum}">${mate.subject }</a> <br> 
 <%-- 							${mate.content } <br> --%>
 							${mate.nickname } | ${mate.readcount } | <img src="img/시계.jpg" width="20"> ${mate.datetime }</td>
 					</tr>

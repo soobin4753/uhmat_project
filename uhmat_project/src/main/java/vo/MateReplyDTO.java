@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Timestamp;
 
-public class CommentDTO {
+public class MateReplyDTO {
 	private int idx;
 	private String nickname;
 	private String content;

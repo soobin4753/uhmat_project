@@ -70,7 +70,7 @@ public class MateListAction implements Action {
 		// => board 디렉토리 내의 qna_board_list.jsp 페이지 지정
 		// => URL 및 request 객체 유지한 채 포워딩을 위해 Dispatcher 방식 지정
 		forward = new ActionForward();
-		forward.setPath("community/mate_list.jsp");
+		forward.setPath("community/mate/mate_list.jsp");
 		forward.setRedirect(false);
 		
 		return forward;
