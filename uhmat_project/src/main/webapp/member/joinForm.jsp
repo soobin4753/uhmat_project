@@ -117,16 +117,64 @@
 			
 		});
 		
+		
+		$("#nickName").on("keyup",function(){
+			var regExp =/^[a-z|가-힣]+[a-z|0-9|가-힣]{3,16}$/g;
+			if(!regExp.test($("#nickName").val()) || $("#nickName").val()==null){
+				 $('#nickNameCheck').text('4글자 ~16글자 사이');    
+                 $('#nickNameCheck').css('color', "red");
+			}else{
+			$.ajax({
+				type: "get",
+				url: "http://localhost:8080/uhmat_project/CheckDuplicateNickName.me",
+				dataType: "text",
+				data:{nickName:$("#nickName").val()},
+	            success: function(data, textStatus) {
+	                if(data === 'usable') {
+	                    $('#nickNameCheck').text('사용할 수 있는 닉네임입니다.');     
+	                    $('#nickNameCheck').css('color', "green");
+	                } else {
+	                    $('#nickNameCheck').text('이미 사용 중인 닉네임입니다.');
+	                    $('#nickNameCheck').css('color', "red");
+	                }
+	            },
+	            error:function (data, textStatus) {
+	                console.log('error');
+	            }
+			});
+		}
+		});
+		
+		$("#email").on("keyup",function(){
+			var regExp =/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+			if(!regExp.test($("#email").val()) ){
+				 $('#EmailResult').text('이메일 형식에 맞지 않습니다.');      
+                 $('#EmailResult').css('color', "red");
+			}else{
+			$.ajax({
+				type: "get",
+				url: "http://localhost:8080/uhmat_project/CheckDuplicateEmail.me",
+				dataType: "text",
+				data:{email:$("#email").val()},
+	            success: function(data, textStatus) {
+	                if(data === 'usable') {
+	                    $('#EmailResult').text('사용할 수 있는 이메일입니다.');      
+	                    $('#EmailResult').css('color', "green");
+	                } else {
+	                    $('#EmailResult').text('이미 사용 중인 이메일입니다.');
+	                    $('#EmailResult').css('color', "red");
+	                }
+	            },
+	            error:function (data, textStatus) {
+	                console.log('error');
+	            }
+			});
+		}
+		
 	});
 	
-	
-	function checkDuplicateNickName() {
-		window.open("MemberCheckNickNameForm.me", "check_id", "width=400,height=300");
-	}
+	});
 
-	function checkDuplicateEmail() {
-		window.open("MemberCheckEmailForm.me", "check_id", "width=400,height=300");
-	}
 
 	// 다음 우편번호 API
 	function execDaumPostcode() {
@@ -163,6 +211,7 @@
 
 				}).open();
 	}
+	
 </script>
 </head>
 <body>
@@ -173,8 +222,9 @@
 		<div><input type="text" name="name" required="required"></div>
 		<br>
 		<div>닉네임</div>
-		<div><input type="text" name="nickName" required="required" readonly="readonly"> 
-		<input type="button" value="닉네임중복확인" onclick="checkDuplicateNickName()">
+		<div><input type="text" name="nickName" id="nickName"required="required" > <span
+			id="nickNameCheck"></span>
+		
 		</div>
 <br>
 
@@ -192,8 +242,8 @@
 <br>
 
 		<div>E-Mail</div>
-		<div><input type="text" name="email" id="email" required="required" readonly="readonly"> 
-		<input type="button" value="이메일중복확인" onclick="checkDuplicateEmail()">
+		<div><input type="text" name="email" id="email" required="required" > 
+		<span id="EmailResult"></span>
 		</div>
 		<br>
 		<div>E-Mail 확인</div>
@@ -227,7 +277,6 @@
 	</form>
 </body>
 </html>
-
 
 
 
