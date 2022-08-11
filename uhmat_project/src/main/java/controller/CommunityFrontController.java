@@ -15,8 +15,10 @@ import action.MateDetailAction;
 import action.MateListAction;
 import action.MateModifyFromAction;
 import action.MateModifyProAction;
+import action.MateReplyDeleteAction;
 import action.MateReplyWriteAction;
 import action.MateWriteProAction;
+import action.RecipeWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.co")
@@ -122,9 +124,56 @@ public class CommunityFrontController extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("MateReplyProAction 오류 - " + e.getMessage());
 				e.printStackTrace();
-			}
+				}
+			
+			
 		// 댓글 리스트
-		} 
+		//=============================================================================== tmi
+		//=============================================================================== recipe
+		// 레시피 페이지 폼 표시
+		} else if(command.equals("/MateReplyList.co")) {
+			action = new MateDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println(" MateDetailAction - reply 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/MateReplyDeleteForm.co")) {
+			forward = new ActionForward();
+			forward.setPath("community/mate/mate_replyDelete.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/MateReplyDeletePro.co")) {
+			action = new MateReplyDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println(" MateReplyDeleteAction - reply 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
+					
+		}
+		
+		
+		else if(command.equals("/RecipeWriteForm.co")) {
+			forward = new ActionForward();
+			forward.setPath("community/recipe/recipe_write.jsp");
+			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
+			
+		} else if(command.equals("/RecipeWritePro.co")) {
+			action = new RecipeWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("RecipeWriteProAction 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
 		
 		// ---------------------------------------------------------------------------
 		if(forward != null) { // ActionForward 객체가 null 이 아닐 경우에만 포워딩 작업 수행
@@ -138,11 +187,10 @@ public class CommunityFrontController extends HttpServlet {
 		}
 	}
 	
-	
-	
 	//----------------------------------------------------------------------------------------------------------------------
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
+		
 	}
 
 	

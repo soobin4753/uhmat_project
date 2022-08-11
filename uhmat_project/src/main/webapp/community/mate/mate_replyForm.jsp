@@ -11,6 +11,7 @@
 	<section>
 		<h1>mate_commentForm.jsp</h1>
 		<form action="MateReplyWrite.co?idx=${param.idx }&pageNum=${param.pageNum}" name="replyForm" method="post">
+<!-- 		<input type="hidden" name="nickname" value="admin"> -->
 		<input type="hidden" name="idx" value="${param.idx }">
 		<input type="hidden" name="pageNum" value="${param.pageNum }">
 		<!-- 답글에 대한 원본글 정보 담고 있는 re_ref, re_lev, re_seq 도 전달 -->
@@ -20,7 +21,7 @@
 		
 		<table>
 			<tr>
-				<td><input type="text" name="nickname" required="required" placeholder="닉네임"></td>
+				<td><input type="text" name="nickname" required="required" ></td>
 			</tr>
 			<tr>
 				<td><textarea rows="10" cols="70" placeholder="댓글을 작성하세요" name="content"></textarea></td>

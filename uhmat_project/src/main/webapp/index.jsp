@@ -58,6 +58,7 @@
 <h3> <a href="FAQList.sc">FAQ</a></h3>
  <h3><a href="MateWriteForm.co">어맛메이트 글쓰기</a></h3>
 <h3><a href="MateList.co">어맛메이트 글목록</a></h3>
+<h3><a href="RecipeWriteForm.co">어맛레시피 쓰기</a></h3>
 
 
 

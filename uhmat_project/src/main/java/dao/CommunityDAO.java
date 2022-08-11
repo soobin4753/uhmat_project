@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.MateReplyDTO;
-
+import vo.RecipeDTO;
 import vo.CommunityTmiDTO;
 
 import vo.MateDTO;
@@ -142,17 +142,6 @@ public class CommunityDAO {
 				// 사용 완료된 PreparedStatement 객체를 먼저 반환
 				close(pstmt);
 				
-//				// 닉네임 조회
-//				sql ="SELECT member.nickname FROM community_mate mate JOIN member member ON mate.nickname = member.nickname";
-//				pstmt = con.prepareStatement(sql);
-//				rs = pstmt.executeQuery();
-//				
-//				if(rs.next()) {
-//					mate = new MateDTO();
-//					mate.setNickname(rs.getString("nickname"));
-//				}
-//				
-//				close(pstmt);
 				
 				// 전달받은 데이터를 board 테이블에 INSERT
 				sql = "INSERT INTO community_mate VALUES(?,?,?,?,0,now())";
@@ -347,52 +336,77 @@ public class CommunityDAO {
 		
 		
 		public ArrayList<MateReplyDTO> selectMateReply(int idx) {
-			System.out.println("CommunityDAO - selectMateReply");
+	         System.out.println("CommunityDAO - selectMateReply");
+	         System.out.println("MateReplyDAO - idx : " + idx);
+	         ArrayList<MateReplyDTO> mateReplyList = null;
+	         
+	         PreparedStatement pstmt  = null;
+	         ResultSet rs = null;
+	         
+	         try {
+	            String sql = "SELECT * FROM mate_reply WHERE board_idx=?";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setInt(1, idx);
+	            
+	            rs = pstmt.executeQuery();
+	            
+	            mateReplyList = new ArrayList<MateReplyDTO>();
+	            
+	            while(rs.next()) {
+	               
+	               MateReplyDTO mateReply = new MateReplyDTO();
+	               mateReply.setBoard_idx(rs.getInt("board_idx"));
+	               mateReply.setContent(rs.getString("content"));
+	               mateReply.setDate(rs.getTimestamp("date"));
+	               mateReply.setIdx(rs.getInt("idx"));
+	               mateReply.setNickname(rs.getString("nickname"));
+	               mateReply.setRe_lev(rs.getInt("re_lev"));
+	               mateReply.setRe_ref(rs.getInt("re_ref"));
+	               mateReply.setRe_seq(rs.getInt("re_seq"));
+//	               mateReply.setBoard_idx(rs.getInt("board_idx"));
+//	               mateReply.setContent(rs.getString("content"));
+//	               mateReply.setIdx(rs.getInt(idx));
+//	               mateReply.setRe_lev(rs.getInt("re_lev"));
+//	               mateReply.setRe_ref(rs.getInt("re_ref"));
+//	               mateReply.setRe_seq(rs.getInt("re_seq"));
+//	               mateReply.setDate(rs.getTimestamp("date"));
+//	               mateReply.setNickname(rs.getString("nickname"));
+//	               
+	               mateReplyList.add(mateReply);
+	            }
+	            System.out.println("mateReplyList :" +mateReplyList );
+	            
+	         } catch (SQLException e) {
+	            System.out.println("SQL 구문 오류 - selectMateReply() : " + e.getMessage());
+	            e.printStackTrace();
+	         } finally {
+	            close(rs);
+	            close(pstmt);
+	         }
+	         return mateReplyList;
+	      }
+		// ------------------------------------------------------------------------------
+		// 댓글 삭제
+		public int deleteReplyMate(int reply_idx) {
+
+			int deleteCount = 0;
 			
-			MateReplyDTO mateReply = null;
-			ArrayList<MateReplyDTO> mateReplyList = null;
-			
-			PreparedStatement pstmt  = null;
-			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			
 			try {
-				String sql = "SELECT * FROM mate_reply WHERE board_idx=?";
+				String sql = "DELETE FROM mate_reply WHERE idx=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, idx);
+				pstmt.setInt(1, reply_idx);
 				
-				rs = pstmt.executeQuery();
+				deleteCount = pstmt.executeUpdate();
 				
-				mateReplyList = new ArrayList<MateReplyDTO>();
-				while(rs.next()) {
-					
-					mateReply = new MateReplyDTO();
-					mateReply.setBoard_idx(rs.getInt("board_idx"));
-					mateReply.setContent(rs.getString("content"));
-					mateReply.setIdx(rs.getInt(idx));
-					mateReply.setNickname(rs.getString("nickname"));
-					mateReply.setRe_lev(rs.getInt("re_lev"));
-					mateReply.setRe_ref(rs.getInt("re_ref"));
-					mateReply.setRe_seq(rs.getInt("re_seq"));
-					mateReply.setDate(rs.getTimestamp("date"));
-					
-					mateReplyList.add(mateReply);
-					
-				}
-				
-				
-				System.out.println(mateReply);
+				System.out.println("deleteReplyMate - " + deleteCount);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				System.out.println("SQL 구문 오류 - deleteReplyMate() : " + e.getMessage());
 				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
 			}
 			
-			
-			
-			
-			return mateReplyList;
+			return deleteCount;
 		}
 		
 		// ============================================================
@@ -716,6 +730,52 @@ public class CommunityDAO {
 		}
 		// -----------------------------------------------------------------------------
 		// 댓글
+		
+		
+		// ============================================================================= recipe
+		public int insertRecipe(RecipeDTO recipe) {
+			
+			int insertCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int num = 1;
+			
+			try {
+				// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
+				// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
+				String sql = "SELECT MAX(idx) FROM community_recipe";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					num = rs.getInt(1) + 1;
+				}
+				
+				close(pstmt);
+				
+				// 전달받은 데이터를 community_recipe 테이블에 INSERT
+				sql = "INSERT INTO community_recipe VALUES (?,?,?,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, recipe.getNickname());
+				pstmt.setString(3, recipe.getSubject());
+				pstmt.setString(4, recipe.getContent());
+				pstmt.setInt(5, 0);
+				pstmt.setString(6, recipe.getOriginal_File());
+				pstmt.setString(7, recipe.getReal_File());
+				
+				insertCount = pstmt.executeUpdate();
+						
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return insertCount;
+		}
+		
 		
 		
 		

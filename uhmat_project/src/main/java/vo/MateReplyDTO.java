@@ -11,6 +11,7 @@ public class MateReplyDTO {
 	private int re_seq;
 	private Timestamp date;
 	private int board_idx;
+	
 	public int getIdx() {
 		return idx;
 	}
