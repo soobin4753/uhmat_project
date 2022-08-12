@@ -24,17 +24,27 @@ public class MateDeleteProAction implements Action {
 		MateDeleteProService service = new MateDeleteProService();
 		boolean isDeleteSuccess = service.deleteMate(idx);
 		
-		if(!isDeleteSuccess) {
+		// 게시판 삭제하면 댓글도 삭제
+		service.deleteMateReply(idx);
+		
+		if(!isDeleteSuccess) { // 게시글 삭제 실패
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('삭제 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
-		} else {
+		} else { // 게시글 삭제 성공 , 댓글 삭제 로직 구현
+			
+			// 게시물 삭제시 댓글까지 삭제
+			service = new MateDeleteProService();
+//			boolean withDeleteReply = service.withDeleteReply(idx);
+			
+			
 			forward = new ActionForward();
 			forward.setPath("MateList.co?pageNum=" + request.getParameter("pageNum"));
 			forward.setRedirect(true);
+			
 		}
 		
 		

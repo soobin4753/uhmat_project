@@ -19,13 +19,15 @@ public class MateReplyDeleteAction implements Action {
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		int reply_idx = Integer.parseInt(request.getParameter("reply_idx"));
+		String nickname = request.getParameter("nickname");
 		System.out.println(idx);
 		System.out.println(reply_idx);
+		System.out.println(nickname);
 		
 		// MateReplyDeleteService - isDeleteReplyMate() 메서드를 호출하여 삭제 요청
 		// => 파라미터 : 글번호    리턴타입 : boolean(isDeleteSuccess)
 		MateReplyDeleteService service = new MateReplyDeleteService();
-		boolean isDeleteSuccess = service.isDeleteReplyMate(reply_idx);
+		boolean isDeleteSuccess = service.isDeleteReplyMate(reply_idx, nickname);
 		System.out.println("action" + isDeleteSuccess);
 		
 		if(!isDeleteSuccess) {

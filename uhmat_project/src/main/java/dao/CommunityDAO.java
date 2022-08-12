@@ -263,6 +263,7 @@ public class CommunityDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, idx);
 				
+				
 				deleteCount = pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -273,6 +274,28 @@ public class CommunityDAO {
 			
 			return deleteCount;
 		}
+		// ----------------------------------------------------------------------------
+		// 게시글 삭제하면 댓글도 삭제하는 로직
+				public int deleteMateReply(int idx) {
+					
+					int deleteMateReply = 0;
+					
+					PreparedStatement pstmt = null;
+					
+					try {
+						String sql = "DELETE FROM mate_reply WHERE board_idx=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, idx);
+						deleteMateReply = pstmt.executeUpdate();
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+						System.out.println("sql구문 오류 - deleteMateReply" + e.getMessage());
+					}
+					
+					return deleteMateReply;
+				}
+		
 		// -----------------------------------------------------------------------------
 		// 댓글
 		public int insertReplyMate(MateReplyDTO mateReply) {
@@ -387,16 +410,17 @@ public class CommunityDAO {
 	      }
 		// ------------------------------------------------------------------------------
 		// 댓글 삭제
-		public int deleteReplyMate(int reply_idx) {
+		public int deleteReplyMate(int reply_idx, String nickname) {
 
 			int deleteCount = 0;
 			
 			PreparedStatement pstmt = null;
 			
 			try {
-				String sql = "DELETE FROM mate_reply WHERE idx=?";
+				String sql = "DELETE FROM mate_reply WHERE idx=? AND nickname=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, reply_idx);
+				pstmt.setString(2, nickname);
 				
 				deleteCount = pstmt.executeUpdate();
 				
@@ -775,10 +799,5 @@ public class CommunityDAO {
 			
 			return insertCount;
 		}
-		
-		
-		
-		
-		
 		
 }

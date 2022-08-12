@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="MateReplyDeletePro.co?idx=${param.idx }&pageNum=${param.pageNum}&reply_idx=${param.reply_idx }" name="deleteReplyForm" method="post">
+	<form action="MateReplyDeletePro.co?idx=${param.idx }&pageNum=${param.pageNum}&reply_idx=${param.reply_idx }&nickname=${param.nickname}" name="deleteReplyForm" method="post">
 	<h1>댓글 삭제 하시겠습니까?</h1>
 <!-- 	<input type="password" placeholder="패스워드를 적으시오"> -->
 	<input type="submit" value="삭제">&nbsp;&nbsp;

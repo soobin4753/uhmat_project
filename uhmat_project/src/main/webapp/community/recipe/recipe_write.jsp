@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+
+
+</script>
+
 </head>
 <body>
 	<section id="writeForm">
@@ -28,10 +36,11 @@
 					</td>
 				</tr>
 				<tr>
-					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
+<!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file1" multiple="multiple" required="required" /></td>
 					<td><input type="file" name="file2" multiple="multiple" required="required" /></td>
 				</tr>
+				
 			</table>
 			<section>
 				<input type="submit" value="등록">&nbsp;&nbsp;

@@ -1,3 +1,4 @@
+<%@page import="vo.MateReplyDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -37,15 +38,13 @@
 		<input type="button" value="목록" onclick="location.href='MateList.co?pageNum=${param.pageNum}'">
 	
 	</section>
-	
-	
 	<section>
 		<table border="1">
 		<c:forEach items="${mateReplyList }" var="mateReplyList">
 			<tr>
-				<td width="500">${mateReplyList.nickname } | ${mateReplyList.content }
+				<td width="500">${mateReplyList.nickname } | ${mateReplyList.content } 
 				<br>
-				${mateReplyList.date } | <input type="button" value="댓글삭제" onclick="location.href='MateReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}'">
+				${mateReplyList.date } | <input type="button" value="댓글삭제" onclick="location.href='MateReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'">
 				</td>
 			</tr>
 		</c:forEach>
