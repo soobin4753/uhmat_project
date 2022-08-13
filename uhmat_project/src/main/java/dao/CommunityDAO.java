@@ -367,7 +367,8 @@ public class CommunityDAO {
 	         ResultSet rs = null;
 	         
 	         try {
-	            String sql = "SELECT * FROM mate_reply WHERE board_idx=?";
+//	            String sql = "SELECT * FROM mate_reply WHERE board_idx=?";
+	        	 String sql = "SELECT * FROM mate_reply WHERE board_idx=? ORDER BY re_ref DESC, re_seq ASC";
 	            pstmt = con.prepareStatement(sql);
 	            pstmt.setInt(1, idx);
 	            
@@ -431,6 +432,67 @@ public class CommunityDAO {
 			}
 			
 			return deleteCount;
+		}
+		// ----------------------------------------------------------
+		// 대댓글
+		
+		public int insertMateRereply(MateReplyDTO mateReply) {
+			System.out.println("CommunityDAO - insertMateRereply");
+			
+			int mateRereplyInsertCount = 0;
+			
+			PreparedStatement pstmt = null, pstmt2 = null, pstmt3 = null;
+			ResultSet rs = null;
+			
+			int num = 1;
+			
+			try {
+				// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
+				// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
+				String sql = "SELECT MAX(idx) FROM mate_reply";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
+				}
+				
+//				 기존 답글들에 대한 순서번호(re_seq) 증가 작업 처리
+//				 => 원본글의 참조글번호(re_ref) 와 같고(같은 레코드들 중에서)
+//				    원본글의 순서번호(re_seq)보다 큰 레코드들의 순서번호를 1씩 증가시키기
+				sql = "UPDATE mate_reply SET re_seq=re_seq+1 WHERE re_seq>?";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setInt(1, mateReply.getRe_seq());
+				mateRereplyInsertCount = pstmt2.executeUpdate();
+				
+				
+				// 답글을 mate_reply 테이블에 INSERT 작업
+				sql = "INSERT INTO mate_reply VALUES(?,?,?,?,?,?,now(),?)";
+				pstmt3 = con.prepareStatement(sql);
+				pstmt3.setInt(1, num);
+				pstmt3.setString(2, mateReply.getNickname());
+				pstmt3.setString(3, mateReply.getContent());
+				pstmt3.setInt(4, mateReply.getIdx());
+				pstmt3.setInt(5, mateReply.getRe_ref() + 1);
+				pstmt3.setInt(6, mateReply.getRe_seq() + 1);
+				pstmt3.setInt(7, mateReply.getBoard_idx());
+//				System.out.println(mateReply);
+				mateRereplyInsertCount = pstmt3.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - insertReplyMate() : " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt3);
+				close(pstmt2);
+				close(pstmt);
+				close(rs);
+			}
+			
+			
+			
+			return mateRereplyInsertCount;
+			
 		}
 		
 		// ============================================================
@@ -798,6 +860,30 @@ public class CommunityDAO {
 			}
 			
 			return insertCount;
+		}
+		public int modifyReplyMate(int reply_idx, String nickname, String content) {
+			
+			int modifyCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "UPDATE mate_reply SET content=? where idx=? AND nickname=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, content);
+				pstmt.setInt(2, reply_idx);
+				pstmt.setString(3, nickname);
+				
+				modifyCount = pstmt.executeUpdate();
+				
+				System.out.println("modifyReplyMate - " + modifyCount);
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - deleteReplyMate() : " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+
+			return modifyCount;
 		}
 		
 }

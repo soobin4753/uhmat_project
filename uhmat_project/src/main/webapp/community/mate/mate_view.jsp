@@ -45,6 +45,7 @@
 				<td width="500">${mateReplyList.nickname } | ${mateReplyList.content } 
 				<br>
 				${mateReplyList.date } | <input type="button" value="댓글삭제" onclick="location.href='MateReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'">
+				 | <input type="button" value="댓글수정" onclick="location.href='MateReplyModifyForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'">
 				</td>
 			</tr>
 		</c:forEach>

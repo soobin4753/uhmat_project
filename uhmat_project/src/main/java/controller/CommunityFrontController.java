@@ -16,6 +16,7 @@ import action.MateListAction;
 import action.MateModifyFromAction;
 import action.MateModifyProAction;
 import action.MateReplyDeleteAction;
+import action.MateReplyModifyAction;
 import action.MateReplyWriteAction;
 import action.MateWriteProAction;
 import action.RecipeWriteProAction;
@@ -126,11 +127,6 @@ public class CommunityFrontController extends HttpServlet {
 				e.printStackTrace();
 				}
 			
-			
-		// 댓글 리스트
-		//=============================================================================== tmi
-		//=============================================================================== recipe
-		// 레시피 페이지 폼 표시
 		} else if(command.equals("/MateReplyList.co")) {
 			action = new MateDetailAction();
 			try {
@@ -138,8 +134,24 @@ public class CommunityFrontController extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println(" MateDetailAction - reply 오류 - " + e.getMessage());
 				e.printStackTrace();
+				}
+			
+		} else if(command.equals("/MateReplyModifyForm.co")) {
+			forward = new ActionForward();
+			forward.setPath("community/mate/mate_replyModify.jsp");
+			forward.setRedirect(false);
+			
+		} else if(command.equals("/MateReplyModifyPro.co")) {
+			action = new MateReplyModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
+		// --------------------------------------------------------------------
+		// 댓글 삭제
 		} else if(command.equals("/MateReplyDeleteForm.co")) {
 			forward = new ActionForward();
 			forward.setPath("community/mate/mate_replyDelete.jsp");
@@ -152,11 +164,18 @@ public class CommunityFrontController extends HttpServlet {
 				System.out.println(" MateReplyDeleteAction - reply 오류 - " + e.getMessage());
 				e.printStackTrace();
 			}
-					
-		}
+		// ======================================================================================
+		// 레시피 페이지 폼 표시
+		} else if(command.equals("/MateReplyList.co")) {
+			action = new MateDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println(" MateDetailAction - reply 오류 - " + e.getMessage());
+				e.printStackTrace();
+				}
 		
-		
-		else if(command.equals("/RecipeWriteForm.co")) {
+		} else if(command.equals("/RecipeWriteForm.co")) {
 			forward = new ActionForward();
 			forward.setPath("community/recipe/recipe_write.jsp");
 			forward.setRedirect(false); // Dispatcher 방식(생략 가능)
@@ -169,7 +188,7 @@ public class CommunityFrontController extends HttpServlet {
 				System.out.println("RecipeWriteProAction 오류 - " + e.getMessage());
 				e.printStackTrace();
 			}
-		}
+		} 
 		
 		
 		
