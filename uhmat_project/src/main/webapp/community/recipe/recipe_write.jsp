@@ -38,7 +38,22 @@
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file1" multiple="multiple" required="required" /></td>
+				</tr>
+				<tr>
+<!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file2" multiple="multiple" required="required" /></td>
+				</tr>
+				<tr>
+<!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
+					<td><input type="file" name="file3" multiple="multiple" required="required" /></td>
+				</tr>
+				<tr>
+<!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
+					<td><input type="file" name="file4" multiple="multiple" required="required" /></td>
+				</tr>
+				<tr>
+<!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
+					<td><input type="file" name="file5" multiple="multiple" required="required" /></td>
 				</tr>
 				
 			</table>

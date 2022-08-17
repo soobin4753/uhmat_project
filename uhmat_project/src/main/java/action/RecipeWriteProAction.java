@@ -55,10 +55,16 @@ public class RecipeWriteProAction implements Action {
 		recipe.setNickname(multi.getParameter("nickname"));
 		recipe.setSubject(multi.getParameter("subject"));
 		recipe.setContent(multi.getParameter("content"));
-		recipe.setOriginal_File(multi.getOriginalFileName("file1"));
-		recipe.setReal_File(multi.getFilesystemName("file1"));
-		recipe.setOriginal_File(multi.getOriginalFileName("file2"));
-		recipe.setReal_File(multi.getFilesystemName("file2"));
+		recipe.setOriginal_File1(multi.getOriginalFileName("file1"));
+		recipe.setReal_File1(multi.getFilesystemName("file1"));
+		recipe.setOriginal_File2(multi.getOriginalFileName("file2"));
+		recipe.setReal_File2(multi.getFilesystemName("file2"));
+		recipe.setOriginal_File3(multi.getOriginalFileName("file3"));
+		recipe.setReal_File3(multi.getFilesystemName("file3"));
+		recipe.setOriginal_File4(multi.getOriginalFileName("file4"));
+		recipe.setReal_File4(multi.getFilesystemName("file4"));
+		recipe.setOriginal_File5(multi.getOriginalFileName("file5"));
+		recipe.setReal_File5(multi.getFilesystemName("file5"));
 		
 		// --------------------------------------------------------------
 		// 실제 비즈니스 작업 요청을 수행할 RecipeWriteProService 클래스의 인스턴스 생성 후

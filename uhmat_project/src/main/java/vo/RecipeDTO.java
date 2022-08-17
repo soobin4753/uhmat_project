@@ -8,9 +8,18 @@ public class RecipeDTO {
 	private String subject;
 	private String content;
 	private int readcount;
-	private String original_File;
-	private String real_File;
+	private String original_File1;
+	private String real_File1;
+	private String original_File2;
+	private String real_File2;
+	private String original_File3;
+	private String real_File3;
+	private String original_File4;
+	private String real_File4;
+	private String original_File5;
+	private String real_File5;
 	private Timestamp datetime;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -41,17 +50,65 @@ public class RecipeDTO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public String getOriginal_File() {
-		return original_File;
+	public String getOriginal_File1() {
+		return original_File1;
 	}
-	public void setOriginal_File(String original_File) {
-		this.original_File = original_File;
+	public void setOriginal_File1(String original_File1) {
+		this.original_File1 = original_File1;
 	}
-	public String getReal_File() {
-		return real_File;
+	public String getReal_File1() {
+		return real_File1;
 	}
-	public void setReal_File(String real_File) {
-		this.real_File = real_File;
+	public void setReal_File1(String real_File1) {
+		this.real_File1 = real_File1;
+	}
+	public String getOriginal_File2() {
+		return original_File2;
+	}
+	public void setOriginal_File2(String original_File2) {
+		this.original_File2 = original_File2;
+	}
+	public String getReal_File2() {
+		return real_File2;
+	}
+	public void setReal_File2(String real_File2) {
+		this.real_File2 = real_File2;
+	}
+	public String getOriginal_File3() {
+		return original_File3;
+	}
+	public void setOriginal_File3(String original_File3) {
+		this.original_File3 = original_File3;
+	}
+	public String getReal_File3() {
+		return real_File3;
+	}
+	public void setReal_File3(String real_File3) {
+		this.real_File3 = real_File3;
+	}
+	public String getOriginal_File4() {
+		return original_File4;
+	}
+	public void setOriginal_File4(String original_File4) {
+		this.original_File4 = original_File4;
+	}
+	public String getReal_File4() {
+		return real_File4;
+	}
+	public void setReal_File4(String real_File4) {
+		this.real_File4 = real_File4;
+	}
+	public String getOriginal_File5() {
+		return original_File5;
+	}
+	public void setOriginal_File5(String original_File5) {
+		this.original_File5 = original_File5;
+	}
+	public String getReal_File5() {
+		return real_File5;
+	}
+	public void setReal_File5(String real_File5) {
+		this.real_File5 = real_File5;
 	}
 	public Timestamp getDatetime() {
 		return datetime;
@@ -62,9 +119,13 @@ public class RecipeDTO {
 	@Override
 	public String toString() {
 		return "RecipeDTO [idx=" + idx + ", nickname=" + nickname + ", subject=" + subject + ", content=" + content
-				+ ", readcount=" + readcount + ", original_File=" + original_File + ", real_File=" + real_File
-				+ ", datetime=" + datetime + "]";
+				+ ", readcount=" + readcount + ", original_File1=" + original_File1 + ", real_File1=" + real_File1
+				+ ", original_File2=" + original_File2 + ", real_File2=" + real_File2 + ", original_File3="
+				+ original_File3 + ", real_File3=" + real_File3 + ", original_File4=" + original_File4 + ", real_File4="
+				+ real_File4 + ", original_File5=" + original_File5 + ", real_File5=" + real_File5 + ", datetime="
+				+ datetime + "]";
 	}
+	
 	
 	
 }

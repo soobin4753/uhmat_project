@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<h1>mate_view.jsp</h1>
@@ -38,15 +39,21 @@
 		<input type="button" value="목록" onclick="location.href='MateList.co?pageNum=${param.pageNum}'">
 	
 	</section>
-	<section>
+	<section> 
 		<table border="1">
 		<c:forEach items="${mateReplyList }" var="mateReplyList">
 			<tr>
-				<td width="500">${mateReplyList.nickname } | ${mateReplyList.content } 
-				<br>
-				${mateReplyList.date } | <input type="button" value="댓글삭제" onclick="location.href='MateReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'">
-				 | <input type="button" value="댓글수정" onclick="location.href='MateReplyModifyForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'">
+				<td>
+					<c:forEach begin="1" end="${mateReplyList.re_lev }">
+						<i class="material-icons" style="font-size:20px;color:red">subdirectory_arrow_right</i>
+					</c:forEach>
+					${mateReplyList.nickname }
 				</td>
+				<td width="500"> ${mateReplyList.content } </td>
+				<td>${mateReplyList.date } </td>
+				<td><input type="button" value="대댓글" onclick="location.href='MateRereplyForm.co?idx=${param.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx} '"></td>
+				<td><input type="button" value="댓글삭제" onclick="location.href='MateReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'"> </td>
+				<td><input type="button" value="댓글수정" onclick="location.href='MateReplyModifyForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${mateReplyList.idx}&nickname=${mateReplyList.nickname}'"></td>
 			</tr>
 		</c:forEach>
 		</table>
