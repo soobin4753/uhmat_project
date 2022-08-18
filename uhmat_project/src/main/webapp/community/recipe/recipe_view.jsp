@@ -17,12 +17,8 @@
 	<section>
 		<table>
 			<tr>
-				<td>${recipe.nickname }</td> 
+				<td>${recipe.nickname } | ${recipe.datetime } | ${recipe.readcount }</td> 
 			</tr>
-			<tr>
-				<td>${recipe.datetime } | ${recipe.readcount }</td> 
-			</tr>
-	
 		</table>
 	</section>
 	
@@ -33,11 +29,12 @@
 	<section>
 		<table>
 			<tr>
-				<td width="200"><img src="recipe_upload/${recipe.real_File1 }"></td>
-				<td width="200"><img src="recipe_upload/${recipe.real_File2 }"></td>
-				<td width="200"><img src="recipe_upload/${recipe.real_File3 }"></td>
-				<td width="200"><img src="recipe_upload/${recipe.real_File4 }"></td>
-				<td width="200"><img src="recipe_upload/${recipe.real_File5 }"></td>
+<!-- 			onerror="this.style.display='none';" img alt 아이콘 없애는 기능 -->
+				<td width="200"><img src="recipe_upload/${recipe.real_File1 }" width="150" onerror="this.style.display='none';"></td>
+				<td width="200"><img src="recipe_upload/${recipe.real_File2 }" width="150" onerror="this.style.display='none';"></td>
+				<td width="200"><img src="recipe_upload/${recipe.real_File3 }" width="150" onerror="this.style.display='none';"></td>
+				<td width="200"><img src="recipe_upload/${recipe.real_File4 }" width="150" onerror="this.style.display='none';"></td>
+				<td width="200"><img src="recipe_upload/${recipe.real_File5 }" width="150" onerror="this.style.display='none';"></td>
 			</tr>
 		</table>
 	</section>
