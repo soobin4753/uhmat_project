@@ -1085,6 +1085,108 @@ public class CommunityDAO {
 			
 			return recipe;
 		}
+		public int deleteRecipe(int idx, String nickname) {
+			
+			int deleteCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM community_recipe WHERE idx=? AND nickname=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				pstmt.setString(2, nickname);
+				
+				deleteCount = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - deleteRecipe() : " + e.getMessage());
+			} finally {
+				close(pstmt);
+			}
+			
+			return deleteCount;
+		}
+		public int selectRecipeSearchListcount(String keyword) {
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT COUNT(*) FROM Community_recipe WHERE subject LIKE ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%" );
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					listCount = rs.getInt(1);
+				}
+				System.out.println("listCount(dao) : " + listCount);
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 발생! selectRecipeSearchListcount -  " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+		public ArrayList<RecipeDTO> recipeSearchList(int pageNum, int listLimit, String keyword) {
+
+			ArrayList<RecipeDTO> recipeSearchList = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int startRow = (pageNum- 1) * listLimit;
+			
+			try {
+				String sql = "SELECT * FROM community_recipe WHERE subject LIKE ? ORDER BY idx DESC LIMIT ?,? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, listLimit);
+				rs = pstmt.executeQuery();
+				
+				recipeSearchList = new ArrayList<RecipeDTO>();
+				
+				while(rs.next()) {
+					RecipeDTO recipe = new RecipeDTO();
+					recipe.setContent(rs.getString("content"));
+					recipe.setDatetime(rs.getTimestamp("datetime"));
+					recipe.setIdx(rs.getInt("idx"));
+					recipe.setNickname(rs.getString("nickname"));
+					recipe.setOriginal_File1(rs.getString("original_File1"));
+					recipe.setOriginal_File2(rs.getString("original_File2"));
+					recipe.setOriginal_File3(rs.getString("original_File3"));
+					recipe.setOriginal_File4(rs.getString("original_File4"));
+					recipe.setOriginal_File5(rs.getString("original_File5"));
+					recipe.setReadcount(rs.getInt("readcount"));
+					recipe.setReal_File1(rs.getString("real_File1"));
+					recipe.setReal_File2(rs.getString("real_File2"));
+					recipe.setReal_File3(rs.getString("real_File3"));
+					recipe.setReal_File4(rs.getString("real_File4"));
+					recipe.setReal_File5(rs.getString("real_File5"));
+					recipe.setSubject(rs.getString("subject"));
+					
+					recipeSearchList.add(recipe);
+					
+				}
+				System.out.println("recipeSearchList : " + recipeSearchList);
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return recipeSearchList;
+		}
 		
 		
 }

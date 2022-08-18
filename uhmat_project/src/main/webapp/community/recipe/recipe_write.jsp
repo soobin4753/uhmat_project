@@ -7,15 +7,16 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-
-
-
-
 </script>
 
 </head>
 <body>
+		
 	<section id="writeForm">
+<!-- 		헤더 들어가는 곳 -->
+		<jsp:include page="../../inc/header.jsp"/>
+<!-- 		헤더 들어가는 곳 -->
+		
 		<h1>레시피 글 등록</h1>
 		<!-- 
 		form 데이터 중 파일 정보가 포함될 경우
@@ -37,23 +38,23 @@
 				</tr>
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td><input type="file" name="file1" multiple="multiple" required="required" /></td>
+					<td><input type="file" name="file1" multiple="multiple"></td>
 				</tr>
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td><input type="file" name="file2" multiple="multiple" required="required" /></td>
+					<td><input type="file" name="file2" multiple="multiple" ></td>
 				</tr>
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td><input type="file" name="file3" multiple="multiple" required="required" /></td>
+					<td><input type="file" name="file3" multiple="multiple"></td>
 				</tr>
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td><input type="file" name="file4" multiple="multiple" required="required" /></td>
+					<td><input type="file" name="file4" multiple="multiple"></td>
 				</tr>
 				<tr>
 <!-- 					파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td><input type="file" name="file5" multiple="multiple" required="required" /></td>
+					<td><input type="file" name="file5" multiple="multiple"></td>
 				</tr>
 				
 			</table>
@@ -63,6 +64,9 @@
 				<input type="button" value="취소" onclick="history.back()">
 			</section>
 		</form>
+		<!-- 		푸터 들어가는 곳 -->
+		<jsp:include page="../../inc/footer.jsp"/>
+<!-- 		푸터 들어가는 곳 -->
 	</section>
 </body>
 </html>
