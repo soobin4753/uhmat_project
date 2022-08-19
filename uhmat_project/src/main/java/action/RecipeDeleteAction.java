@@ -5,8 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MateDeleteProService;
-import svc.ReplyDeleteService;
+import svc.RecipeDeleteService;
 import vo.ActionForward;
 
 public class RecipeDeleteAction implements Action {
@@ -21,9 +20,9 @@ public class RecipeDeleteAction implements Action {
 		String nickname = request.getParameter("nickname");
 		System.out.println("idx : " + idx);
 		
-		// MateDeleteProService - isDeleteMate() 메서드를 호출하여 삭제 요청
+		// RecipeDeleteProService - isDeleteMate() 메서드를 호출하여 삭제 요청
 		// => 파라미터 : 글번호    리턴타입 : boolean(isDeleteSuccess)
-		ReplyDeleteService service = new ReplyDeleteService();
+		RecipeDeleteService service = new RecipeDeleteService();
 		boolean isDeleteSuccess = service.deleteRecipe(idx, nickname);
 		
 		// 게시판 삭제하면 댓글도 삭제

@@ -6,7 +6,7 @@ import dao.CommunityDAO;
 
 import static db.JdbcUtil.*;
 
-public class ReplyDeleteService {
+public class RecipeDeleteService {
 
 	public boolean deleteRecipe(int idx, String nickname) {
 		System.out.println("ReplyDeleteService - deleteRecipe");
