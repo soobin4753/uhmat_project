@@ -236,6 +236,7 @@ public class CommunityFrontController extends HttpServlet {
 		// -----------------------------------------------------------------------------
 		// 레시피 삭제
 		} else if(command.equals("/RecipeDeleteForm.co")){
+			System.out.println(request.getParameter("file1"));
 			forward = new ActionForward();
 			forward.setPath("community/recipe/recipe_delete.jsp");
 			forward.setRedirect(false);
