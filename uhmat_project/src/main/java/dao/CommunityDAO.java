@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import vo.MateReplyDTO;
 import vo.RecipeDTO;
+import vo.RecipeReplyDTO;
 import vo.CommunityTmiDTO;
 
 import vo.MateDTO;
@@ -1186,6 +1187,101 @@ public class CommunityDAO {
 			}
 			
 			return recipeSearchList;
+		}
+		// ----------------------------------------------------------
+		// 레시피 댓글
+		public int insertReplyRecipe(RecipeReplyDTO recipeReply) {
+			
+				
+				int insertCount = 0;
+				
+				PreparedStatement pstmt = null, pstmt2 = null;
+				ResultSet rs = null;
+				
+				int num = 1;
+				
+				try {
+					// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
+					// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
+					String sql = "SELECT MAX(idx) FROM recipe_reply";
+					pstmt = con.prepareStatement(sql);
+					rs = pstmt.executeQuery();
+					
+					if(rs.next()) {
+						num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
+					}
+					
+					// 답글을 mate_reply 테이블에 INSERT 작업
+					sql = "INSERT INTO recipe_reply VALUES(?,?,?,?,?,?,now(),?)";
+					pstmt2 = con.prepareStatement(sql);
+					pstmt2.setInt(1, num);
+					pstmt2.setString(2, recipeReply.getNickname());
+					pstmt2.setString(3, recipeReply.getContent());
+					pstmt2.setInt(4, num);
+					pstmt2.setInt(5, 0);
+					pstmt2.setInt(6, 0);
+					pstmt2.setInt(7, recipeReply.getBoard_idx());
+					System.out.println(recipeReply);
+					
+					insertCount = pstmt2.executeUpdate();
+					
+					// 22-08-09 미완성임
+					
+				} catch (SQLException e) {
+					System.out.println("SQL 구문 오류 - insertReplyRecipe() : " + e.getMessage());
+					e.printStackTrace();
+				} finally {
+					close(pstmt2);
+					close(pstmt);
+					close(rs);
+				}
+				
+				
+				
+				return insertCount;
+		}
+		public ArrayList<RecipeReplyDTO> selectRecipeReply(int idx) {
+			
+			System.out.println("CommunityDAO - selectRecipeReply");
+	         System.out.println("RecipeReplyDAO - idx : " + idx);
+	         ArrayList<RecipeReplyDTO> recipeReplyList = null;
+	         
+	         PreparedStatement pstmt  = null;
+	         ResultSet rs = null;
+	         
+	         try {
+	        	 String sql = "SELECT * FROM recipe_reply WHERE board_idx=? ORDER BY re_ref DESC, re_seq ASC";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setInt(1, idx);
+	            
+	            rs = pstmt.executeQuery();
+	            
+	            recipeReplyList = new ArrayList<RecipeReplyDTO>();
+	            
+	            while(rs.next()) {
+	               
+	               RecipeReplyDTO recipeReply = new RecipeReplyDTO();
+	               recipeReply.setBoard_idx(rs.getInt("board_idx"));
+	               recipeReply.setContent(rs.getString("content"));
+	               recipeReply.setDate(rs.getTimestamp("date"));
+	               recipeReply.setIdx(rs.getInt("idx"));
+	               recipeReply.setNickname(rs.getString("nickname"));
+	               recipeReply.setRe_lev(rs.getInt("re_lev"));
+	               recipeReply.setRe_ref(rs.getInt("re_ref"));
+	               recipeReply.setRe_seq(rs.getInt("re_seq"));
+	               
+	               recipeReplyList.add(recipeReply);
+	            }
+	            System.out.println("mateReplyList :" + recipeReplyList );
+	            
+	         } catch (SQLException e) {
+	            System.out.println("SQL 구문 오류 - selectRecipeReply() : " + e.getMessage());
+	            e.printStackTrace();
+	         } finally {
+	            close(rs);
+	            close(pstmt);
+	         }
+	         return recipeReplyList;
 		}
 		
 		

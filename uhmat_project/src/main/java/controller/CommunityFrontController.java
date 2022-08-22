@@ -24,6 +24,7 @@ import action.MateWriteProAction;
 import action.RecipeDeleteAction;
 import action.RecipeDetailAction;
 import action.RecipeListAction;
+import action.RecipeReplyWriteAction;
 import action.RecipeSearchAction;
 import action.RecipeWriteProAction;
 import vo.ActionForward;
@@ -259,7 +260,34 @@ public class CommunityFrontController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("RecipeSearchAction 오류 - " + e.getMessage());
 			}
-					
+		// -------------------------------------------------------------------------------
+		// 레시피 댓글
+		} else if(command.equals("/RecipeReplyForm.co")) {
+			forward = new ActionForward();
+			forward.setPath("community/recipe/recipe_replyForm.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/RecipeReplyWrite.co")){
+			action = new RecipeReplyWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println("RecipeReplyWriteAction 오류 - " + e.getMessage());
+				e.printStackTrace();
+				}
+		
+		// ------------------------------------------------------
+		// 레시피 댓글 리스트
+		} else if(command.equals("/RecipeReplyList.co")) {
+			action = new RecipeDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println(" RecipeDetailAction - reply 오류 - " + e.getMessage());
+				e.printStackTrace();
+				}
+			
+		// ---------------------------------------------------------------	
+		// 레시피 댓글 수정	
 		}
 	
 		

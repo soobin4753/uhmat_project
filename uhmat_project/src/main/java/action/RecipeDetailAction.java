@@ -1,11 +1,14 @@
 package action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.RecipeDetailService;
 import vo.ActionForward;
 import vo.RecipeDTO;
+import vo.RecipeReplyDTO;
 
 public class RecipeDetailAction implements Action {
 
@@ -31,6 +34,11 @@ public class RecipeDetailAction implements Action {
 		
 		// 조회 결과(1개 게시물 정보 = RecipeDTO 객체)를 request 객체에 저장
 		request.setAttribute("recipe", recipe);
+		
+		// 댓글 리스트
+		ArrayList<RecipeReplyDTO> recipeReplyList = service.getRecipeReply(idx);
+		
+		request.setAttribute("recipeReplyList", recipeReplyList);
 		
 		// ActionForward 객체를 활용하여 recipe 디렉토리의 recipe_view.jsp 페이지 포워딩 설정
 		forward = new ActionForward();

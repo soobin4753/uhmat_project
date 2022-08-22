@@ -1,9 +1,11 @@
 package svc;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import dao.CommunityDAO;
 import vo.RecipeDTO;
+import vo.RecipeReplyDTO;
 
 import static db.JdbcUtil.*;
 
@@ -47,6 +49,23 @@ public class RecipeDetailService {
 		close(con);
 
 		return recipe;
+	}
+
+	public ArrayList<RecipeReplyDTO> getRecipeReply(int idx) {
+		System.out.println("RecipeDetailService - getRecipeReply");
+		
+		Connection con = getConnection();
+		
+		CommunityDAO dao = CommunityDAO.getInstance();
+		
+		dao.setConnection(con);
+		
+		ArrayList<RecipeReplyDTO> recipeReplyList = dao.selectRecipeReply(idx);
+		
+		close(con);
+		
+		
+		return recipeReplyList;
 	}
 
 	
