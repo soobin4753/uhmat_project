@@ -63,8 +63,8 @@
 				<td width="500"> ${recipeReplyList.content } </td>
 				<td>${recipeReplyList.date } </td>
 				<td><input type="button" value="대댓글" onclick="location.href='RecipeRereplyForm.co?idx=${param.idx}&pageNum=${param.pageNum}&reply_idx=${recipeReplyList.idx} '"></td>
-				<td><input type="button" value="댓글삭제" onclick="location.href='RecipeReplyDeleteForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${recipeReplyList.idx}&nickname=${recipeReplyList.nickname}'"> </td>
-				<td><input type="button" value="댓글수정" onclick="location.href='RecipeReplyModifyForm.co?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${recipeReplyList.idx}&nickname=${recipeReplyList.nickname}'"></td>
+				<td><input type="button" value="댓글삭제" onclick="location.href='RecipeReplyDeleteForm.co?idx=${recipe.idx}&pageNum=${param.pageNum}&reply_idx=${recipeReplyList.idx}&nickname=${recipeReplyList.nickname}'"> </td>
+				<td><input type="button" value="댓글수정" onclick="location.href='RecipeReplyModifyForm.co?idx=${recipe.idx}&pageNum=${param.pageNum}&reply_idx=${recipeReplyList.idx}&nickname=${recipeReplyList.nickname}'"></td>
 			</tr>
 		</c:forEach>
 		</table>

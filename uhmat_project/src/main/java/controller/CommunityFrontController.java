@@ -24,6 +24,9 @@ import action.MateWriteProAction;
 import action.RecipeDeleteAction;
 import action.RecipeDetailAction;
 import action.RecipeListAction;
+import action.RecipeModifyFormAction;
+import action.RecipeModifyProAction;
+import action.RecipeReplyModifyAction;
 import action.RecipeReplyWriteAction;
 import action.RecipeSearchAction;
 import action.RecipeWriteProAction;
@@ -251,7 +254,27 @@ public class CommunityFrontController extends HttpServlet {
 				System.out.println("RecipeDeleteAction 오류 - " + e.getMessage());
 			}
 		// ------------------------------------------------------------------------------
-		// 레시피 검색
+		// 레시피 수정
+		} else if(command.equals("/RecipeModifyForm.co")) {
+			System.out.println("레시피글 수정 작업");
+			try {
+				action = new RecipeModifyFormAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("RecipeModifyFormAction 오류 - " + e.getMessage());
+			}
+		} else if(command.equals("/RecipeModifyPro.co")) {
+			System.out.println("레시피글 수정 작업 요청");
+			try {
+				action = new RecipeModifyProAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("RecipeModifyProAction 오류 - " + e.getMessage());
+			}
+		// ------------------------------------------------------------------------------
+		// 레시피 검색	
 		} else if(command.equals("/RecipeSearch.co")) {
 			action = new RecipeSearchAction();
 			try {
@@ -288,6 +311,22 @@ public class CommunityFrontController extends HttpServlet {
 			
 		// ---------------------------------------------------------------	
 		// 레시피 댓글 수정	
+		} else if(command.equals("/RecipeReplyModifyForm.co")) {
+			forward = new ActionForward();
+			forward.setPath("community/recipe/recipe_replyModify.jsp");
+			forward.setRedirect(false);
+			
+		} else if(command.equals("/RecipeReplyModifyPro.co")) {
+			action = new RecipeReplyModifyAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				System.out.println(" RecipeReplyModifyAction - reply 오류 - " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+		// --------------------------------------------------------------------
+		// 레시피 댓글 삭제
 		}
 	
 		

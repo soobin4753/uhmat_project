@@ -38,22 +38,28 @@ public class RecipeDeleteAction implements Action {
 		String file5 = request.getParameter("file5");
 		System.out.println("file5 : " + file5);
 		
-		String path = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload";
+//		String path = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload";
+		String path = request.getServletContext().getRealPath("./recipe_upload");
 		File folder = new File(path);
 		
-		String filePath = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file1;
+//		String filePath = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file1;
+		String filePath = request.getServletContext().getRealPath("./recipe_upload/" + file1);
 		File deleteFile = new File(filePath);
 		
-		String filePath2 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file2;
+//		String filePath2 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file2;
+		String filePath2 = request.getServletContext().getRealPath("./recipe_upload/" + file2);
 		File deleteFile2 = new File(filePath2);
 		
-		String filePath3 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file3;
+//		String filePath3 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file3;
+		String filePath3 = request.getServletContext().getRealPath("./recipe_upload/" + file3);
 		File deleteFile3 = new File(filePath3);
 		
-		String filePath4 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file4;
+//		String filePath4 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file4;
+		String filePath4 = request.getServletContext().getRealPath("./recipe_upload/" + file4);
 		File deleteFile4 = new File(filePath4);
 		
-		String filePath5 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file5;
+//		String filePath5 = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file5;
+		String filePath5 = request.getServletContext().getRealPath("./recipe_upload/" + file5);
 		File deleteFile5 = new File(filePath5);
 		
 		// RecipeDeleteProService - isDeleteMate() 메서드를 호출하여 삭제 요청

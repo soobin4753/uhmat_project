@@ -1086,6 +1086,8 @@ public class CommunityDAO {
 			
 			return recipe;
 		}
+		// --------------------------------------------------------------
+		// 레시피 글 삭제
 		public int deleteRecipe(int idx, String nickname) {
 			
 			int deleteCount = 0;
@@ -1108,6 +1110,49 @@ public class CommunityDAO {
 			
 			return deleteCount;
 		}
+		// -------------------------------------------------------
+		// 레시피 글 업데이트
+		public int updateRecipe(RecipeDTO recipe) {
+			System.out.println("CommunityDAO - updateRecipe");
+			System.out.println("up : "+ recipe.toString() );
+			int updateCount = 0;
+
+			PreparedStatement pstmt = null;
+
+			try {
+				String sql = "UPDATE community_recipe SET subject=?,content=?,"
+						+ "original_File1=?,original_File2=?,original_File3=?,original_File4=?,original_File5=?,"
+						+ "real_File1=?,real_File2=?,real_File3=?,real_File4=?,real_File5=? "
+						+ "WHERE idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, recipe.getSubject());
+				pstmt.setString(2, recipe.getContent());
+				pstmt.setString(3, recipe.getOriginal_File1());
+				pstmt.setString(4, recipe.getOriginal_File2());
+				pstmt.setString(5, recipe.getOriginal_File3());
+				pstmt.setString(6, recipe.getOriginal_File4());
+				pstmt.setString(7, recipe.getOriginal_File5());
+				pstmt.setString(8, recipe.getReal_File1());
+				pstmt.setString(9, recipe.getReal_File2());
+				pstmt.setString(10, recipe.getReal_File3());
+				pstmt.setString(11, recipe.getReal_File4());
+				pstmt.setString(12, recipe.getReal_File5());
+				pstmt.setInt(13, recipe.getIdx());
+				
+				updateCount = pstmt.executeUpdate();
+				System.out.println("레시피수정DAO의 Count" + updateCount);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - updateRecipe() : " + e.getMessage());
+			} finally {
+				close(pstmt);
+			}
+
+			return updateCount;
+		}
+		// -----------------------------------------------------
+		// 레시피 검색
 		public int selectRecipeSearchListcount(String keyword) {
 			int listCount = 0;
 			
@@ -1135,6 +1180,7 @@ public class CommunityDAO {
 			
 			return listCount;
 		}
+		
 		public ArrayList<RecipeDTO> recipeSearchList(int pageNum, int listLimit, String keyword) {
 
 			ArrayList<RecipeDTO> recipeSearchList = null;
@@ -1225,7 +1271,7 @@ public class CommunityDAO {
 					
 					insertCount = pstmt2.executeUpdate();
 					
-					// 22-08-09 미완성임
+					
 					
 				} catch (SQLException e) {
 					System.out.println("SQL 구문 오류 - insertReplyRecipe() : " + e.getMessage());
@@ -1283,6 +1329,31 @@ public class CommunityDAO {
 	         }
 	         return recipeReplyList;
 		}
+		public int modifyReplyRecipe(int reply_idx, String nickname, String content) {
+			int modifyCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "UPDATE recipe_reply SET content=? where idx=? AND nickname=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, content);
+				pstmt.setInt(2, reply_idx);
+				pstmt.setString(3, nickname);
+				
+				modifyCount = pstmt.executeUpdate();
+				
+				System.out.println("modifyReplyRecipe - " + modifyCount);
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - deleteReplyRecipe() : " + e.getMessage());
+				e.printStackTrace();
+			}
+			
+
+			
+			return modifyCount;
+		}
+		
 		
 		
 }
