@@ -1353,6 +1353,141 @@ public class CommunityDAO {
 			
 			return modifyCount;
 		}
+		// --------------------------------------------------------------
+		// 레시피 댓글 삭제
+		public int deleteRecipeReply(int reply_idx, String nickname) {
+			System.out.println("Recipe 댓글 삭제 - deleteRecipeReply()");
+			
+			int deleteRecipeReplyCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM recipe_reply WHERE idx=? AND nickname=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reply_idx);
+				pstmt.setString(2, nickname);
+				
+				deleteRecipeReplyCount = pstmt.executeUpdate();
+				
+				System.out.println("deleteRecipeReply - " + deleteRecipeReplyCount);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - deleteRecipeReply() " + e.getMessage());
+			}
+			
+			return deleteRecipeReplyCount;
+		}
+		// 레시피 게시물 삭제하면 댓글도 삭제
+		public int deleteRecipeReply(int idx) {
+			int deleteRecipeReply = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM recipe_reply WHERE board_idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				deleteRecipeReply = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("sql구문 오류 - deleteRecipeReply" + e.getMessage());
+			}
+			
+			return deleteRecipeReply;
+		}
+		// ----------------------------------------------------
+		// 레시피 대댓글
+		public RecipeReplyDTO selectRecipeRereply(int reply_idx) {
+			RecipeReplyDTO recipeReply = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT * FROM recipe_reply WHERE idx=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reply_idx);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					recipeReply = new RecipeReplyDTO();
+					recipeReply.setBoard_idx(rs.getInt("board_idx"));
+					recipeReply.setContent(rs.getString("content"));
+					recipeReply.setDate(rs.getTimestamp("date"));
+					recipeReply.setIdx(rs.getInt("idx"));
+					recipeReply.setNickname(rs.getString("nickname"));
+					recipeReply.setRe_lev(rs.getInt("re_lev"));
+					recipeReply.setRe_ref(rs.getInt("re_ref"));
+					recipeReply.setRe_seq(rs.getInt("re_seq"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - selectRereply() : " + e.getMessage());
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return recipeReply;
+		}
+		// 레시피 대댓글 글쓰기
+		public int insertRecipeRereply(RecipeReplyDTO recipeRereply) {
+			System.out.println("CommunityDAO - insertRecipeRereply");
+			
+			int RecipeRereplyInsertCount = 0;
+			
+			PreparedStatement pstmt = null, pstmt2 = null, pstmt3 = null;
+			ResultSet rs = null;
+			
+			int num = 1;
+			
+			try {
+				// 새 글 번호로 사용될 번호를 생성하기 위해 기존 게시물의 가장 큰 번호 조회
+				// => 조회 결과가 있을 경우 해당 번호 + 1 값을 새 글 번호로 저장
+				String sql = "SELECT MAX(idx) FROM recipe_reply";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					num = rs.getInt(1) + 1; // 조회된 가장 큰 번호 + 1 값을 새 글 번호로 저장
+				}
+				
+//				 기존 답글들에 대한 순서번호(re_seq) 증가 작업 처리
+//				 => 원본글의 참조글번호(re_ref) 와 같고(같은 레코드들 중에서)
+//				    원본글의 순서번호(re_seq)보다 큰 레코드들의 순서번호를 1씩 증가시키기
+				sql = "UPDATE recipe_reply SET re_seq=re_seq+1 WHERE re_seq>?";
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setInt(1, recipeRereply.getRe_seq());
+				RecipeRereplyInsertCount = pstmt2.executeUpdate();
+				
+				// 답글을 mate_reply 테이블에 INSERT 작업
+				sql = "INSERT INTO recipe_reply VALUES(?,?,?,?,?,?,now(),?)";
+				pstmt3 = con.prepareStatement(sql);
+				pstmt3.setInt(1, num);
+				pstmt3.setString(2, recipeRereply.getNickname());
+				pstmt3.setString(3, recipeRereply.getContent());
+				pstmt3.setInt(4, recipeRereply.getRe_ref());
+				pstmt3.setInt(5, recipeRereply.getRe_lev() + 1);
+				pstmt3.setInt(6, recipeRereply.getRe_seq() + 1);
+				pstmt3.setInt(7, recipeRereply.getBoard_idx());
+//				System.out.println(mateReply);
+				RecipeRereplyInsertCount = pstmt3.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("SQL 구문 오류 - insertRecipeRereply() : " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt3);
+				close(pstmt2);
+				close(pstmt);
+				close(rs);
+			}
+			
+			return RecipeRereplyInsertCount;
+		}
 		
 		
 		

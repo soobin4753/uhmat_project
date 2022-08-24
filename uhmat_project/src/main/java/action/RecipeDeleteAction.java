@@ -68,7 +68,7 @@ public class RecipeDeleteAction implements Action {
 		boolean isDeleteSuccess = service.deleteRecipe(idx, nickname);
 		
 		// 게시판 삭제하면 댓글도 삭제
-//		service.deleteRecipeReply(idx);
+		service.deleteRecipeReply(idx);
 		
 		if(!isDeleteSuccess) { // 게시글 삭제 실패
 			response.setContentType("text/html; charset=UTF-8");

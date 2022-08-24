@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
