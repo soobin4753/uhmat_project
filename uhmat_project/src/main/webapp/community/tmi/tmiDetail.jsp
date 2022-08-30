@@ -87,7 +87,7 @@
 			<tr><th width="70">제 목</th><td colspan="3" >${tmiBoard.subject }</td></tr>
 			<tr>
 				<th width="70">작성자</th><td>${tmiBoard.nickname }</td>
-				<th width="70">작성일</th><td>${tmiBoard.date }</td>
+				<th width="70">작성일</th><td>${tmiBoard.datetime }</td>
 			<tr>
 				<th width="70">조회수</th>
 				<td>${tmiBoard.readcount }</td>

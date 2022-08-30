@@ -18,7 +18,7 @@ public class CommunityTmiDTO {
 	private String subject;
 	private String content;
 	private int readcount;
-	private Timestamp date;
+	private Timestamp datetime;
 	private String report;
 	
 	
@@ -52,11 +52,12 @@ public class CommunityTmiDTO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public Timestamp getDate() {
-		return date;
+	
+	public Timestamp getDatetime() {
+		return datetime;
 	}
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setDatetime(Timestamp datetime) {
+		this.datetime = datetime;
 	}
 	public String getReport() {
 		return report;
@@ -67,8 +68,11 @@ public class CommunityTmiDTO {
 	@Override
 	public String toString() {
 		return "CommunityTmiDTO [idx=" + idx + ", nickname=" + nickname + ", subject=" + subject + ", content="
-				+ content + ", readcount=" + readcount + ", datetime=" + date + "]";
+				+ content + ", readcount=" + readcount + ", datetime=" + datetime + ", report=" + report + "]";
 	}
+	
+
+	
 	
 	
 	

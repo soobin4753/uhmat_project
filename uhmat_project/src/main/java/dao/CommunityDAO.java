@@ -643,7 +643,7 @@ public class CommunityDAO {
 				tmiBoard.setNickname(rs.getString("nickname"));
 				tmiBoard.setSubject(rs.getString("subject"));
 				tmiBoard.setContent(rs.getString("content"));
-				tmiBoard.setDate(rs.getTimestamp("datetime"));
+				tmiBoard.setDatetime(rs.getTimestamp("datetime"));
 				tmiBoard.setReadcount(rs.getInt("readcount"));
 
 				tmiBoardList.add(tmiBoard);
@@ -692,7 +692,7 @@ public class CommunityDAO {
 			pstmt.setString(3, tmiBoard.getSubject());
 			pstmt.setString(4, tmiBoard.getContent());
 			pstmt.setInt(5, tmiBoard.getReadcount());
-			pstmt.setTimestamp(6, tmiBoard.getDate());
+			pstmt.setTimestamp(6, tmiBoard.getDatetime());
 			pstmt.setString(7, tmiBoard.getReport());
 			tmiInsertCount = pstmt.executeUpdate();
 
@@ -730,7 +730,7 @@ public class CommunityDAO {
 				tmiBoard.setNickname(rs.getString("nickname"));
 				tmiBoard.setSubject(rs.getString("subject"));
 				tmiBoard.setContent(rs.getString("content"));
-				tmiBoard.setDate(rs.getTimestamp("datetime"));
+				tmiBoard.setDatetime(rs.getTimestamp("datetime"));;
 				tmiBoard.setReadcount(rs.getInt("readcount"));
 				System.out.println(tmiBoard);
 			}

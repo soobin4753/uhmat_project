@@ -53,8 +53,8 @@
 	<!-- 본문들어가는 곳 시작 -->
 		<!-- 최고의 리뷰 순위 시작 -->
 			<div class="rankContainer">
-				<div class = "imgContainer"><h2>최고의 리뷰</h2>
-					<div class = "mainView">
+				<div class = "imgContainer" ><h2>최고의 리뷰</h2>
+					<div class = "mainView" style="width: 800px">
 						<ul>
 							<li><img src="image/sample1.jpg" width="100%" /></li>
 							<li><img src="image/sample2.jpg" width="100%" /></li>
@@ -86,7 +86,7 @@
 		<!-- 리뷰어 창 시작 -->
 			<div class="reviewer">
 				<div class = "imgContainer"><h2>어맛 리뷰어</h2>
-					<div class = "mainView">
+					<div class = "mainView" >
 						<ul>
 							<li><img src="image/sample1.jpg" width="100%" /></li>
 							<li><img src="image/sample2.jpg" width="100%" /></li>
