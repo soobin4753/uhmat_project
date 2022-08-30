@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>mate_replyList.jsp</h1>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<table border="1">
 		<!-- 게시물 목록 출력(단, 게시물이 하나라도 존재할 경우에만 출력) -->
@@ -30,6 +32,10 @@
 <%-- 			</c:otherwise> --%>
 		</c:choose>
 	</table>
+	
+	<!-- 		푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 		푸터 들어가는 곳 -->
 	
 </body>
 </html>

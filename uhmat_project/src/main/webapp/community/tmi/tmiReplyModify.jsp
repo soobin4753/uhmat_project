@@ -39,6 +39,10 @@
 </style>
 </head>
 <body>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
+
 <!-- 게시판 글 수정 -->
 	<section id="modifyForm">
 		<h1>게시판 글 수정</h1>
@@ -69,5 +73,9 @@
 			</section>
 		</form>
 	</section>
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

@@ -1,7 +1,8 @@
-/action/
-/controller/
-/dao/
-/db/
-/mail/
 /svc/
 /vo/
+/dao/
+/controller/
+/action/
+/.gitignore
+/db/
+/mail/

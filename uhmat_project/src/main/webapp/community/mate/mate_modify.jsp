@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>mate_modify.jsp</h1>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<form action="MateModifyPro.co" name="MateForm" method="post">
 		<!-- 게시물 수정에 필요한 글번호와 페이징 처리에 필요한 페이지번호도 함께 전달 -->

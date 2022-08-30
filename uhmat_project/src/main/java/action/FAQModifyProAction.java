@@ -20,7 +20,6 @@ public class FAQModifyProAction implements Action {
 		faq.setOriginal_File(request.getParameter("file"));
 		faq.setReal_File(request.getParameter("file"));
 		faq.setIdx(Integer.parseInt(request.getParameter("idx")));
-
 		faq.setCategory(request.getParameter("category"));
 
 //		System.out.println("notice : " + faq);

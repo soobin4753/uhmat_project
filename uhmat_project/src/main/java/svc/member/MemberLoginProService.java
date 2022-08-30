@@ -35,4 +35,18 @@ public class MemberLoginProService {
 		return isAuthenticatedUserSuccess;
 	}
 
+	public MemberDTO getMember(String email) {
+		MemberDTO member = null;
+		
+		Connection con = getConnection();
+		MemberDAO dao = MemberDAO.getInstance();
+		dao.setConnection(con);
+		
+		member = dao.getNickname(email);
+		
+		close(con);
+		
+		return member;
+	}
+
 }

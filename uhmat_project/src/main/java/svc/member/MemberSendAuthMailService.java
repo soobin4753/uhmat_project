@@ -1,9 +1,13 @@
 package svc.member;
 
-import dao.MemberDAO;
-import static db.JdbcUtil.*;  
- 
-import java.sql.Connection;  
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.rollback;
+
+import java.sql.*;
+
+import dao.*;  
   
 public class MemberSendAuthMailService {
 

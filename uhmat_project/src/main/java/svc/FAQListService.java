@@ -9,8 +9,7 @@ import vo.*;
 
 public class FAQListService {
 
-	public int getListCount() {
-//		System.out.println("FAQListService - getListCount");
+	public int getListSelectCount(String keyword) {
 		int listCount = 0;
 		
 		Connection con = JdbcUtil.getConnection();
@@ -19,15 +18,15 @@ public class FAQListService {
 		
 		dao.setConnection(con);
 		
-		listCount = dao.selectListcount();
-//		System.out.println(listCount);
+		listCount = dao.selectAnythingListcount(keyword);
+		System.out.println("getList listCount " + listCount);
+		
 		JdbcUtil.close(con);
 		
 		return listCount;
 	}
-
-	public ArrayList<FAQDTO> getFAQList(int pageNum, int listLimit) {
-//		System.out.println("FAQListService - getFAQList ");
+	
+	public ArrayList<FAQDTO> getFAQList(int pageNum, int listLimit, String keyword) {
 		ArrayList<FAQDTO> list = null;
 		
 		Connection con = JdbcUtil.getConnection();
@@ -36,12 +35,13 @@ public class FAQListService {
 		
 		dao.setConnection(con);
 		
-		list = dao.selectFAQList(pageNum, listLimit);
-//		System.out.println(list);
+		list = dao.selectAnythingList(pageNum, listLimit, keyword);
 		
 		JdbcUtil.close(con);
 		
 		return list;
 	}
+
+	
 
 }

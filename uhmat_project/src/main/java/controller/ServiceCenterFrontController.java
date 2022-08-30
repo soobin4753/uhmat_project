@@ -76,10 +76,22 @@ public class ServiceCenterFrontController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		} 
+		
+			
+				
+		//------------------Notice 카테고리 -----------------------
+			
+		 } else if(command.equals("/NoticelistCategory.sc")) {
+				try {
+					action = new NoticelistCategoryAction();
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
 				
 		// --------------------FAQ ------------------------------------
-		 else if (command.equals("/FAQList.sc")) {
+	    } else if (command.equals("/FAQList.sc")) {
 			try {
 				action = new FAQListAction();
 				forward = action.execute(request, response);
@@ -132,8 +144,20 @@ public class ServiceCenterFrontController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
+		//------------FAQList에서 Category 선택했을 때--------------------------------------
+		} else if(command.equals("/FAQlistCategory.sc")) {
+			try {
+				action = new FAQlistCategoryAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
 		
 		//---------------------관리자가 답변-----------------------------------------------
+		// 관리자 작성
 
 		} else if(command.equals("/FAQDetailReply.sc")) {
 			try {
@@ -149,6 +173,29 @@ public class ServiceCenterFrontController extends HttpServlet {
 		} else if(command.equals("/FAQDetailReplyDelete.sc")) {
 			try {
 				action = new FAQDetailReplyDeleteAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		//--------------------실시간 채팅-----------------------
+		
+		else if(command.equals("/LiveTalkList.sc")) {
+			try {
+				action = new LiveTalkAction();
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		else if(command.equals("/LiveTalkPro.sc")) {
+			try {
+				action = new LiveTalkProAction();
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

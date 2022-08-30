@@ -1,5 +1,6 @@
 package action;
 
+
 import java.io.*;
 
 import javax.servlet.*;
@@ -9,12 +10,14 @@ import com.oreilly.servlet.*;
 import com.oreilly.servlet.multipart.*;
 
 import svc.*;
+
 import vo.*;
 
 public class ReviewWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		System.out.println("ReviewWriteProAction");
 		ActionForward forward = null;
 		
@@ -44,7 +47,7 @@ public class ReviewWriteProAction implements Action {
 //				System.out.println(realPath);
 				// D:\Shared\JSP\workspace_jsp2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MVC_Board\ upload
 				// => 실제 업로드 될 폴더 위치(주의! 워크스페이스 내의 프로젝트 폴더에 있는 upload 폴더는 가상의 폴더)
-				
+
 				// 5. MultipartRequest 객체 생성
 				// => 생성자 파라미터로 파일 업로드에 필요한 각종 파라미터를 전달
 				MultipartRequest multi = new MultipartRequest(
@@ -72,8 +75,11 @@ public class ReviewWriteProAction implements Action {
 				System.out.println(request.getRemoteAddr() + " : " + dto.getSubject());
 		// 작업 요청을 수행할 ReviewWriteProService 클래스의 인스턴스 생성 후
 		// registReview() 메서드를 호출하여 글쓰기 작업 요청
+				
+				String tag = multi.getParameter("tag");
+
 				ReviewWriteProService service = new ReviewWriteProService();
-				boolean isWriteSuccess = service.registBoard(dto);
+				boolean isWriteSuccess = service.registBoard(dto, tag);
 				
 				// Service 클래스로부터 글쓰기 작업 요청 처리 결과를 전달받아 성공/실패 여부 판별
 				if(!isWriteSuccess) { // 글쓰기 실패 시
@@ -102,6 +108,7 @@ public class ReviewWriteProAction implements Action {
 				}
 				
 				return forward;
+
 	}
 
 }

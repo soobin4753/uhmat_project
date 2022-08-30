@@ -1,6 +1,6 @@
 package dao;
 
-import static db.JdbcUtil.close; 
+import static db.JdbcUtil.*; 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +25,7 @@ public class AuthInfoDAO {
 		this.con = con;
 	}
 	public boolean isAuthentication(AuthInfoDTO authInfo) {
+		System.out.println("isAuthentication");
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
@@ -40,14 +41,21 @@ public class AuthInfoDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				System.out.println(rs.next());
 				sql="UPDATE member SET auth_status='Y' WHERE email=?";
 				pstmt2 = con.prepareStatement(sql);
 				pstmt2.setString(1, authInfo.getEmail());
 				int updateCount=pstmt2.executeUpdate();
+				System.out.println(updateCount);
+				
+				commit(con);
 				sql="DELETE FROM auth_info WHERE email=?";
 				pstmt3 = con.prepareStatement(sql);
 				pstmt3.setString(1, authInfo.getEmail());
+				
 				int deleteCount=pstmt3.executeUpdate();
+				System.out.println(deleteCount);
+			
 				
 				if(updateCount>0 && deleteCount>0) {
 					isAuthenticationSuccess = true;
@@ -61,6 +69,8 @@ public class AuthInfoDAO {
 			close(pstmt);
 			close(pstmt2);
 			close(pstmt3);
+			
+		
 			
 		}
 		return isAuthenticationSuccess;

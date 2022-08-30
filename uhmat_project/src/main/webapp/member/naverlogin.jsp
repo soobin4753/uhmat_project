@@ -7,6 +7,7 @@
 <html>
   <head>
     <title>네이버로그인</title>
+
   </head>
   <body>
   <%
@@ -20,6 +21,6 @@
     apiURL += "&state=" + state;
     session.setAttribute("state", state);
  %>
-  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+  <a href="<%=apiURL%>" target="blank"><img height="50" width="300" src="./image/btnG_완성형.png"/></a>
   </body>
 </html>

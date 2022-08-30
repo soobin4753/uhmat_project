@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
+	
 <%-- ?idx=${param.idx }&pageNum=${param.pageNum }&nickname=${param.nickname } --%>
 	<form action="RecipeDeletePro.co" name="deleteForm" method="post">
 	<input type="hidden" name="idx" value="${param.idx }">
@@ -23,6 +28,11 @@
 	<input type="submit" value="삭제" >&nbsp;&nbsp;
 	<input type="button" value="돌아가기" onclick="javascript:history.back()">
 	</form>
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
+	
 	
 </body>
 </html>

@@ -1,8 +1,9 @@
 package action;
 
+import javax.servlet.http.*;
+
 import java.util.*;
 
-import javax.servlet.http.*;
 
 import svc.*;
 import vo.*;
@@ -11,13 +12,14 @@ public class ReviewListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
 		System.out.println("ReviewListAction");
 		
 		ActionForward forward = null;
 		
 		//페이징 처리를 위한 변수 선언
 		int pageNum = 1;
-		int listLimit = 10;
+		int listLimit = 6;
 		int pageLimit = 10;
 		
 		
@@ -48,15 +50,16 @@ public class ReviewListAction implements Action {
 			}
 		
 		// 페이징 처리 정보를 pageInfo 객체에 저장
-		PageInfo pageInfo = new PageInfo(pageNum, maxPage, endPage, startPage, listCount);
+		PageInfo pageInfo = new PageInfo(pageNum, maxPage, startPage, endPage, listCount);
 		
 		ArrayList<ReviewBoardDTO> reviewList = ReviewListService.getBoardList(pageNum, listLimit);
+		
 		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("reviewList", reviewList);
 		
 		forward = new ActionForward();
-		forward.setPath("RestaurantCategory/reviewList.jsp");
+		forward.setPath("food/review/reviewList.jsp");
 		forward.setRedirect(false);
 	
 		return forward;

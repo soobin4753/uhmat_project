@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>mate_recipe.jsp</h1>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	<table>
 		<tr>
 			<td rowspan="5"><img src="../img/김볶.jpg" width="100"></td>
@@ -18,5 +20,10 @@
 			<td rowspan="4">글 들어갈 곳</td>
 		</tr>
 	</table>
+	
+	<!-- 		푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 		푸터 들어가는 곳 -->
+	
 </body>
 </html>

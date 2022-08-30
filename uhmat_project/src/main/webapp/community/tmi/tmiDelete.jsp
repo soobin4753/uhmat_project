@@ -9,6 +9,9 @@
 </head>
 <body>
 	<!-- 헤더 자리 -->
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<!-- 게시글 등록 -->
 	<section>
@@ -30,6 +33,9 @@
 			</table>
 		</form>
 	</section>
-	<!-- 푸터 자리 -->
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

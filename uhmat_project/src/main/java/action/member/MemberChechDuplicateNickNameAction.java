@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import svc.member.MemberCheckDuplicateNickNameService;
 import vo.ActionForward;
 
-public class MemberChechDuplicateNickNameAction {
+public class MemberChechDuplicateNickNameAction  {
 
+	
 
 	public boolean execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberChechDuplicateNickNameAction");
@@ -21,6 +22,10 @@ public class MemberChechDuplicateNickNameAction {
 		MemberCheckDuplicateNickNameService service = new MemberCheckDuplicateNickNameService();
 		boolean isDuplicate = service.checkDuplicateNickName(nickName);
 		
+
+		// ActionForward 객체를 사용하여 CheckDuplicateId.me 서블릿 주소 요청
+		// => 파라미터로 아이디와 검색결과 전달
+
 	
 		
 		return isDuplicate;

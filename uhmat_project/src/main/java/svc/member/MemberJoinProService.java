@@ -1,9 +1,14 @@
 package svc.member;
 
-import java.sql.Connection;
-import static db.JdbcUtil.*;  
-import dao.MemberDAO;
-import vo.MemberDTO;
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.rollback;
+
+import java.sql.*;
+
+import dao.*;
+import vo.*;
 
 public class MemberJoinProService {
 

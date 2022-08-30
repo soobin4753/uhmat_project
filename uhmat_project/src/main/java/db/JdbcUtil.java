@@ -6,36 +6,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+//데이터베이스 접속 관련 처리를 수행하는 JdbcUtil
 public class JdbcUtil {
 	public static Connection getConnection() {
-	 
-		Connection con=null;
+		Connection con = null;
+		
 		try {
-			try {
-				Context initContext=new InitialContext();
-				DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/MySQL");
-				
-				con=ds.getConnection();
-				con.setAutoCommit(false);// 자동 커밋 해체
-				//dml 작업후에는 수동으로 커밋 작업을 해야함
-				//rollback 작업을 수동으로 해야함
-			} catch (SQLException e) { 
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+			Context initialCtx = new InitialContext();
+//			Context envCtx = (Context)initialCtx.lookup("java:comp/env");
+//			DataSource ds = (DataSource)envCtx.lookup("jdbc/MYSQL");
 			
+			DataSource ds = (DataSource)initialCtx.lookup("java:comp/env/jdbc/MySQL");
+			con = ds.getConnection();
 			
+			con.setAutoCommit(false);
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
+		
 		return con;
 	}
 	
@@ -46,8 +43,8 @@ public class JdbcUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
+	
 	public static void close(PreparedStatement pstmt) {
 		try {
 			pstmt.close();
@@ -55,7 +52,6 @@ public class JdbcUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
 	public static void close(ResultSet rs) {
 		try {
@@ -64,17 +60,17 @@ public class JdbcUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
-	//트렌젝션 처리에 필요한  작업 매서드를 정의
+	
 	public static void commit(Connection con) {
 		try {
 			con.commit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Commit오류!");
 			e.printStackTrace();
 		}
 	}
+	
 	public static void rollback(Connection con) {
 		try {
 			con.rollback();

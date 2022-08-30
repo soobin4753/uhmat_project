@@ -24,6 +24,7 @@ public class FAQReplyDAO {
 		boolean isWriteReplySuccess = false;
 		int insertCount = 0;
 		int board_idx = 1;
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -104,7 +105,6 @@ public class FAQReplyDAO {
 		return deleteSuccess;
 	}
 
-
 	public boolean selectFAQReply(int idx) {
 		boolean selectFAQReply = false;
 		PreparedStatement pstmt = null;
@@ -128,9 +128,5 @@ public class FAQReplyDAO {
 		
 		return selectFAQReply;
 	}
-
-
-	
-	
 
 }

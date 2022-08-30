@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 헤더 자리 -->
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<!-- 탭 형식의 커뮤니티페이지 내의 서브 페이지 -->
 	
@@ -94,7 +96,9 @@
 			</c:otherwise>
 		</c:choose>
 	</section>
-	<!-- 푸터 자리 -->
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 	
 </body>
 </html>

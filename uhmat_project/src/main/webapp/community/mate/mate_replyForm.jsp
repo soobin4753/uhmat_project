@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	<section>
 		<h1>mate_commentForm.jsp</h1>
 		<form action="MateReplyWrite.co?idx=${param.idx }&pageNum=${param.pageNum}" name="replyForm" method="post">
@@ -33,5 +35,9 @@
 		</table>
 		</form>
 	</section>
+	
+	<!-- 		푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 		푸터 들어가는 곳 -->
 </body>
 </html>

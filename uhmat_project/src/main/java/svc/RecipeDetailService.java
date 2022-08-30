@@ -1,13 +1,15 @@
 package svc;
 
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.CommunityDAO;
 import vo.RecipeDTO;
 import vo.RecipeReplyDTO;
-
-import static db.JdbcUtil.*;
 
 public class RecipeDetailService {
 
@@ -52,7 +54,7 @@ public class RecipeDetailService {
 	}
 
 	public ArrayList<RecipeReplyDTO> getRecipeReply(int idx) {
-		System.out.println("RecipeDetailService - getRecipeReply");
+System.out.println("RecipeDetailService - getRecipeReply");
 		
 		Connection con = getConnection();
 		

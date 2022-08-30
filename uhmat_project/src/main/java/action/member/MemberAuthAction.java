@@ -35,7 +35,7 @@ public class MemberAuthAction implements Action {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('인증에 성공했습니다.')");
-			out.println("location.href='MemberLoginForm.me'");
+			out.println("location.href='MemberLogin.me'");
 			out.println("</script>");
 //			forward = new ActionForward();
 //			forward.setPath("Main.auth");

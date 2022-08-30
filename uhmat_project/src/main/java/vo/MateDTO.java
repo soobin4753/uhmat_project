@@ -10,6 +10,7 @@ public class MateDTO {
 	private String content;
 	private int readcount;
 	private Timestamp datetime;
+	private String report;
 	
 	public int getIdx() {
 		return idx;
@@ -41,17 +42,27 @@ public class MateDTO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
+
+	
 	public Timestamp getDatetime() {
 		return datetime;
 	}
 	public void setDatetime(Timestamp datetime) {
 		this.datetime = datetime;
 	}
+	public String getReport() {
+		return report;
+	}
+	public void setReport(String report) {
+		this.report = report;
+	}
 	@Override
 	public String toString() {
 		return "MateDTO [idx=" + idx + ", nickname=" + nickname + ", subject=" + subject + ", content=" + content
-				+ ", readcount=" + readcount + ", datetime=" + datetime + "]";
+				+ ", readcount=" + readcount + ", datetime=" + datetime + ", report="
+				+ report + "]";
 	}
+	
 	
 	
 	

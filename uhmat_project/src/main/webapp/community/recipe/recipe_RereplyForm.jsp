@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<section>
 		<h1>recipe_RereplyForm.jsp</h1>
@@ -35,5 +38,9 @@
 		</table>
 		</form>
 	</section>
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

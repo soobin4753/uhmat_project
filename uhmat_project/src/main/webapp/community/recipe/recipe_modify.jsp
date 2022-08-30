@@ -124,6 +124,11 @@
 
 </head>
 <body>
+
+	<!-- 헤더 들어가는 곳 -->
+		<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
+	
 	<!-- 게시판 글 수정 -->
 	<section>
 		<h1>recipe_modifyForm</h1>
@@ -149,35 +154,35 @@
 				<tr>
 					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file1" id="file1" multiple="multiple" required="required" /></td>	
-					<td width="200"><img src="./upload/recipe_upload/${recipe.real_File1 }" width="100" onerror="this.style.display='none';"></td>
+					<td width="200"><img src="./recipe_upload/${recipe.real_File1 }" width="100" onerror="this.style.display='none';"></td>
 					<!-- 수정작업을 위해 체크박스를 만들어 체크박스 클릭 시 수정이 가능하게 만들어줍니다. -->
 					<td>수정할래? 체크 클릭!<input type="checkbox" id="imgCheck1" name="imgCheck1" value="false"> </td>
 				</tr>
 				<tr>
 					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file2" id="file2" multiple="multiple" ></td>
-					<td width="200"><img src="./upload/recipe_upload/${recipe.real_File2 }" width="100" onerror="this.style.display='none';"></td>
+					<td width="200"><img src="./recipe_upload/${recipe.real_File2 }" width="100" onerror="this.style.display='none';"></td>
 					<!-- 수정작업을 위해 체크박스를 만들어 체크박스 클릭 시 수정이 가능하게 만들어줍니다. -->
 					<td>수정할래? 체크 클릭!<input type="checkbox" id="imgCheck2" name="imgCheck2" value="false" > </td>
 				</tr>
 				<tr>
 					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file3" id="file3" multiple="multiple" ></td>
-					<td width="200"><img src="./upload/recipe_upload/${recipe.real_File3 }" width="100" onerror="this.style.display='none';"></td>
+					<td width="200"><img src="./recipe_upload/${recipe.real_File3 }" width="100" onerror="this.style.display='none';"></td>
 					<!-- 수정작업을 위해 체크박스를 만들어 체크박스 클릭 시 수정이 가능하게 만들어줍니다. -->
 					<td>수정할래? 체크 클릭!<input type="checkbox" id="imgCheck3" name="imgCheck3" value="false"> </td>
 				</tr>
 				<tr>
 					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file4" id="file4" multiple="multiple" ></td>
-					<td width="200"><img src="./upload/recipe_upload/${recipe.real_File4 }" width="100" onerror="this.style.display='none';"></td>
+					<td width="200"><img src="./recipe_upload/${recipe.real_File4 }" width="100" onerror="this.style.display='none';"></td>
 					<!-- 수정작업을 위해 체크박스를 만들어 체크박스 클릭 시 수정이 가능하게 만들어줍니다. -->
 					<td>수정할래? 체크 클릭!<input type="checkbox" id="imgCheck4" name="imgCheck4" value="false" width="50"> </td>
 				</tr>
 				<tr>
 					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
 					<td><input type="file" name="file5" id="file5" multiple="multiple" ></td>
-					<td width="200"><img src="./upload/recipe_upload/${recipe.real_File5 }" width="100" onerror="this.style.display='none';"></td>
+					<td width="200"><img src="./recipe_upload/${recipe.real_File5 }" width="100" onerror="this.style.display='none';"></td>
 					<!-- 수정작업을 위해 체크박스를 만들어 체크박스 클릭 시 수정이 가능하게 만들어줍니다. -->
 					<td>수정할래? 체크 클릭!<input type="checkbox" id="imgCheck5" name="imgCheck5" value="false"> </td>
 				</tr>
@@ -193,5 +198,9 @@
 			</section>
 		</form>
 	</section>
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

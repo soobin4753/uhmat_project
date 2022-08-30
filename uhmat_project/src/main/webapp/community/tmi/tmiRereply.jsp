@@ -40,6 +40,10 @@
 </style>
 </head>
 <body>
+	<!-- 헤더 들어가는 곳 -->
+	<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
+	
 	<!-- 게시판 답글 작성 -->
 	<section id="replyForm">
 		<h1>댓글의 답글 작성</h1>
@@ -79,6 +83,10 @@
 			</section>
 		</form>
 	</section>
+	
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>
 

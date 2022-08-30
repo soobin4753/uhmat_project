@@ -18,12 +18,11 @@ public class ReviewBoardDTO {
 	private String res_name;
 	private String nickname;
 	private String subject;
-
 	private String photo;
-
 	private String content;
 	private int likes;
 	private float rating;
+	private String tag_name;
 	
 	public int getIdx() {
 		return idx;
@@ -74,6 +73,12 @@ public class ReviewBoardDTO {
 	}
 	public void setRating(float rating) {
 		this.rating = rating;
+	}
+	public String getTag_name() {
+		return tag_name;
+	}
+	public void setTag_name(String tag_name) {
+		this.tag_name = tag_name;
 	}
 	@Override
 	public String toString() {

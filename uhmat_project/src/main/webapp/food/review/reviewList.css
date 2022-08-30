@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#listView{
+	margin: 3%;
+	border: 1px solid black;
+	width : 25%;
+	height: 500px;
+	float: left;
+}
+
+#aside {
+	right: 0;
+	position: fixed;
+}
+
+#pageList {
+	bottom: 0;
+	right: 50%;
+	position: fixed;
+}
+
+#header {
+	top: 0;
+	position: fixed;
+}
+#footer {
+	bottom: 0;
+	position: fixed;
+}

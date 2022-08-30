@@ -21,7 +21,7 @@ public class MemberLogoutAction implements Action {
 		
 		// 메인페이지 포워딩
 		forward = new ActionForward();
-		forward.setPath("index.jsp"); 
+		forward.setPath("main.jsp"); 
 		forward.setRedirect(true);
 		
 		return forward;

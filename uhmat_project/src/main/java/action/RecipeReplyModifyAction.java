@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MateReplyModifyProService;
 import svc.RecipeReplyModifyProService;
 import vo.ActionForward;
 

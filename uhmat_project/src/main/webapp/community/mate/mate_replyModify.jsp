@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>mate_modify.jsp</h1>
+	<!-- 헤더 들어가는 곳 -->
+		<jsp:include page="../../inc/header.jsp"/>
+	<!-- 헤더 들어가는 곳 -->
 	
 	<form action="MateReplyModifyPro.co" name="MateReplyForm" method="post">
 <%-- 		?idx=${mate.idx}&pageNum=${param.pageNum}&reply_idx=${param.idx}&nickname=${param.nickname} --%>
@@ -36,5 +38,9 @@
 			
 			</section>
 	</form>
+	
+	<!-- 		푸터 들어가는 곳 -->
+	<jsp:include page="../../inc/footer.jsp"/>
+	<!-- 		푸터 들어가는 곳 -->
 </body>
 </html>

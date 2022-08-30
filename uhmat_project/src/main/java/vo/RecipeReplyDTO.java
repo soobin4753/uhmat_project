@@ -12,6 +12,7 @@ public class RecipeReplyDTO {
 	private Timestamp date;
 	private int board_idx;
 	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -60,6 +61,7 @@ public class RecipeReplyDTO {
 	public void setBoard_idx(int board_idx) {
 		this.board_idx = board_idx;
 	}
+
 	@Override
 	public String toString() {
 		return "CommentDTO [idx=" + idx + ", nickname=" + nickname + ", content=" + content + ", re_ref=" + re_ref

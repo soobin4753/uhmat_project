@@ -18,6 +18,10 @@ public class MateListAction implements Action {
 		
 		ActionForward forward = null;
 		
+		// 검색기능도 함께 수행할 keyword 저장!
+		String keyword = "";
+		System.out.println("검색액션 키워드 - " + keyword);
+		
 		// 페이징 처리를 위한 변수 선언
 		int pageNum = 1; // 현재 페이지 번호(기본값 1 페이지로 설정)
 		int listLimit = 10; // 한 페이지 당 표시할 게시물 수
@@ -28,11 +32,16 @@ public class MateListAction implements Action {
 			pageNum = Integer.parseInt(request.getParameter("pageNum")); // String -> int 변환
 		}
 		
+		// 키워드가 ""이 아닐때 키워드를 가져와 변수에 저장!
+		if(request.getParameter("keyword") != null) {
+			keyword  = request.getParameter("keyword");
+		}
+		
 		// 페이징 처리에 필요한 전체 게시물 갯수 조회 작업 요청
 		// MateListProService 클래스 인스턴스 생성 후 mateCount() 메서드 호출하여 총 게시물 수 조회
 		// => 파라미터 : 없음     리턴타입 : int(listCount)
 		MateListProService service = new MateListProService();
-		int listCount = service.mateCount();
+		int listCount = service.mateCount(keyword);
 		System.out.println("전체 게시물 수 : " + listCount);
 		
 		// -------------------------------------------------------------------------------------
@@ -59,7 +68,7 @@ public class MateListAction implements Action {
 		// MateListProService 객체의 getMateList() 메서드를 호출하여 게시물 목록 가져오기
 		// => 파라미터 : 현재 페이지번호(pageNum), 페이지 당 게시물 수(listLimit)
 		// => 리턴타입 : ArrayList<MateDTO>(mateList)
-		ArrayList<MateDTO> mateList = service.getMateList(pageNum, listLimit);
+		ArrayList<MateDTO> mateList = service.getMateList(keyword, pageNum, listLimit);
 		
 		// 뷰페이지(jsp)에서 사용할 데이터가 저장된 객체들을 전달하기 위해
 		// request 객체의 setAttribute() 메서드를 호출하여 객체 저장

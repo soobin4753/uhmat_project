@@ -21,77 +21,7 @@ public class FAQDAO {
 		this.con = con;
 	}
 	
-	
-	public int selectListcount() {
-//		System.out.println("FAQDAO - selectListCount");
-		int listCount = 0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT COUNT(*) FROM FAQBoard";
-			pstmt = con.prepareStatement(sql);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				listCount = rs.getInt(1);
-			}
-//			System.out.println("listCount : " + listCount);
-		} catch (SQLException e) {
-			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		
-		return listCount;
-	}
 
-	public ArrayList<FAQDTO> selectFAQList(int pageNum, int listLimit) {
-//		System.out.println("FAQDAO - selectNoticeList");
-		ArrayList<FAQDTO> list = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int startRow = (pageNum- 1) * listLimit;
-		
-		try {
-			String sql = "SELECT * FROM FAQBoard ORDER BY idx DESC LIMIT ?,?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, listLimit);
-			rs = pstmt.executeQuery();
-			
-			list = new ArrayList<FAQDTO>();
-			
-			while(rs.next()) {
-				FAQDTO faq = new FAQDTO();
-				faq.setContent(rs.getString("content"));
-				faq.setDate(rs.getDate("date"));
-				faq.setIdx(rs.getInt("idx"));
-				faq.setNickname(rs.getString("nickname"));
-				faq.setOriginal_File(rs.getString("original_File"));
-				faq.setReal_File(rs.getString("real_File"));
-				faq.setSubject(rs.getString("subject"));
-				faq.setCategory(rs.getString("category"));
-				faq.setReadcount(rs.getInt("readcount"));
-				faq.setCategory(rs.getString("category"));
-				
-				list.add(faq);
-			}
-//			System.out.println("list : " + list);
-		} catch (SQLException e) {
-			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		return list;
-	}
 	public int insertFAQ(FAQDTO faq) {
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
@@ -180,8 +110,6 @@ public class FAQDAO {
 			pstmt.setString(3, faq.getContent());
 			pstmt.setString(4, faq.getCategory());
 			pstmt.setInt(5, faq.getIdx());
-
-			
 			updateCount = pstmt.executeUpdate();
 			System.out.println(updateCount);
 			
@@ -235,5 +163,154 @@ public class FAQDAO {
 		}
 		
 	}
+
+
+	public int selectFAQCategoryListcount(String category) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM FAQBoard WHERE category LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+ category +"%");
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			System.out.println("listCount : " + listCount);
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<FAQDTO> selectFAQCategory(int pageNum, int listLimit, String category) {
+//		System.out.println("FAQDAO - selectFAQCategory");
+		ArrayList<FAQDTO> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int startRow = (pageNum- 1) * listLimit;
+		
+		try {
+			String sql = "SELECT * FROM FAQBoard WHERE category LIKE ? ORDER BY idx DESC LIMIT ?,? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%"+ category +"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, listLimit);
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<FAQDTO>();
+			
+			while(rs.next()) {
+				FAQDTO faq = new FAQDTO();
+				faq.setContent(rs.getString("content"));
+				faq.setDate(rs.getDate("date"));
+				faq.setIdx(rs.getInt("idx"));
+				faq.setNickname(rs.getString("nickname"));
+				faq.setOriginal_File(rs.getString("original_File"));
+				faq.setReal_File(rs.getString("real_File"));
+				faq.setSubject(rs.getString("subject"));
+				faq.setCategory(rs.getString("category"));
+				faq.setReadcount(rs.getInt("readcount"));
+				faq.setCategory(rs.getString("category"));
+				
+				list.add(faq);
+				
+			}
+			System.out.println("list : " + list);
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return list;
+
+	}
+	public int selectAnythingListcount(String keyword) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM FAQBoard WHERE subject LIKE ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%" );
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			System.out.println("listCount : " + listCount);
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public ArrayList<FAQDTO> selectAnythingList(int pageNum, int listLimit, String keyword) {
+//		System.out.println("FAQDAO - selectAnythingList");
+		ArrayList<FAQDTO> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int startRow = (pageNum- 1) * listLimit;
+		
+		try {
+			String sql = "SELECT * FROM FAQBoard WHERE subject LIKE ? ORDER BY idx DESC LIMIT ?,? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, listLimit);
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<FAQDTO>();
+			
+			while(rs.next()) {
+				FAQDTO faq = new FAQDTO();
+				faq.setContent(rs.getString("content"));
+				faq.setDate(rs.getDate("date"));
+				faq.setIdx(rs.getInt("idx"));
+				faq.setNickname(rs.getString("nickname"));
+				faq.setOriginal_File(rs.getString("original_File"));
+				faq.setReal_File(rs.getString("real_File"));
+				faq.setSubject(rs.getString("subject"));
+				faq.setCategory(rs.getString("category"));
+				faq.setReadcount(rs.getInt("readcount"));
+				faq.setCategory(rs.getString("category"));
+				
+				list.add(faq);
+				
+			}
+			System.out.println("list : " + list);
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! -  " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return list;
+	}
+
 }

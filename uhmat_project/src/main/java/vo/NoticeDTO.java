@@ -16,7 +16,6 @@ import java.sql.*;
  		
  */
 
-
 public class NoticeDTO {
 	private int idx;
 	private String nickname;

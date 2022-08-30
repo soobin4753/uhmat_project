@@ -18,10 +18,10 @@ public class RecipeDetailAction implements Action {
 		System.out.println("RecipeDetailAction");
 		
 		ActionForward forward = null;
-		
+		 
 		// request 객체를 통해 전달받은 파라미터(idx) 가져오기
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		System.out.println("idx : " + idx);
+//		System.out.println("idx : " + idx);
 		
 		// RecipeDetailService 인스턴스 생성 후 increaseRecipeReadcount 메서드 호출하여 조회수 증가 요청
 		// => 파라미터 : 글번호(idx)   리턴타입 : void

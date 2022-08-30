@@ -13,11 +13,10 @@ public class FAQDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		System.out.println("FAQDetailAction - execute");
 		ActionForward forward = null;
-
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 //		System.out.println("idx : " + idx);
-
+		
 		FAQDetailService service = new FAQDetailService();
 		
 		service.increaseReadcount(idx);
@@ -31,7 +30,7 @@ public class FAQDetailAction implements Action {
 		request.setAttribute("reply", reply);
 		
 		forward = new ActionForward();
-		forward.setPath("serviceCenter/faq/faqDetail.jsp");
+		forward.setPath("serviceCenter/faq/faqDetail.jsp?keyword="+ request.getParameter("keyword"));
 		forward.setRedirect(false);
 		
 		return forward;

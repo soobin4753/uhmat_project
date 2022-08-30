@@ -41,6 +41,7 @@ public class RecipeDeleteAction implements Action {
 //		String path = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload";
 		String path = request.getServletContext().getRealPath("./recipe_upload");
 		File folder = new File(path);
+		System.out.println(path);
 		
 //		String filePath = "D:\\workspace_jsp1\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\uhmat_project\\recipe_upload\\" + file1;
 		String filePath = request.getServletContext().getRealPath("./recipe_upload/" + file1);
@@ -68,7 +69,7 @@ public class RecipeDeleteAction implements Action {
 		boolean isDeleteSuccess = service.deleteRecipe(idx, nickname);
 		
 		// 게시판 삭제하면 댓글도 삭제
-		service.deleteRecipeReply(idx);
+//		service.deleteRecipeReply(idx);
 		
 		if(!isDeleteSuccess) { // 게시글 삭제 실패
 			response.setContentType("text/html; charset=UTF-8");

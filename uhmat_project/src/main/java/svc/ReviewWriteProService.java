@@ -10,7 +10,7 @@ import java.sql.*;
 import dao.*;
 public class ReviewWriteProService {
 
-	public boolean registBoard(ReviewBoardDTO dto) {
+	public boolean registBoard(ReviewBoardDTO dto,String tag) {
 		System.out.println("ReviewWriteProService - registBoard()");
 		boolean isWriteSuccess = false;
 		
@@ -24,7 +24,7 @@ public class ReviewWriteProService {
 		dao.setConnection(con);
 		
 		// 4. DAO  메서드 호출하기
-		int insertCount = dao.insertReview(dto);
+		int insertCount = dao.insertReview(dto,tag);
 		
 		// 5. 결과에 따른 트랜잭션 처리하기
 		if(insertCount > 0) {

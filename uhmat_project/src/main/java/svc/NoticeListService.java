@@ -9,8 +9,7 @@ import vo.*;
 
 public class NoticeListService {
 
-	public int getListCount() {
-//		System.out.println("NoticeListService - getListCount");
+	public int getListSelectCount(String keyword) {
 		int listCount = 0;
 		
 		Connection con = JdbcUtil.getConnection();
@@ -19,16 +18,14 @@ public class NoticeListService {
 		
 		dao.setConnection(con);
 		
-		listCount = dao.selectListcount();
+		listCount = dao.selectAnythingListcount(keyword);
 //		System.out.println(listCount);
-		
 		JdbcUtil.close(con);
 		
 		return listCount;
 	}
-
-	public ArrayList<NoticeDTO> getNoticeList(int pageNum, int listLimit) {
-//		System.out.println("NoticeListService - getNoticeList ");
+	
+	public ArrayList<NoticeDTO> getNoticeList(int pageNum, int listLimit, String keyword) {
 		ArrayList<NoticeDTO> list = null;
 		
 		Connection con = JdbcUtil.getConnection();
@@ -37,8 +34,7 @@ public class NoticeListService {
 		
 		dao.setConnection(con);
 		
-		list = dao.selectNoticeList(pageNum, listLimit);
-//		System.out.println(list);
+		list = dao.selectAnythingList(pageNum, listLimit, keyword);
 		
 		JdbcUtil.close(con);
 		
