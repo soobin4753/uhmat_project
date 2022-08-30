@@ -53,22 +53,22 @@
 						<input type="hidden" name="pageNum" value="${param.pageNum }">
 		
 					<div class="form-floating mb-3">
-						<input type="text" id="nickname" name="nickname" value="${mate.nickname }" required="required" readonly="readonly">
+						<input type="text" class="form-control" id="nickname" name="nickname" value="${mate.nickname }" required="required" readonly="readonly">
 						<label for="nickname">어맛인</label>
 					</div>
 					 <div class="form-floating mb-3">	
-						<input type="text" id="subject" name="subject" value="${mate.subject }" required="required">
+						<input type="text"  class="form-control" id="subject" name="subject" value="${mate.subject }" required="required">
 						<label for="subject">제목</label>
 					</div>	
 					 <div class="form-floating mb-3">
-						<textarea rows="15" cols="40" id="content" name="content" required="required"> ${mate.content }</textarea>
+						<textarea class="form-control" id="content" name="content" style="height: 10rem" required="required"> ${mate.content }</textarea>
 						<label for="message">내용</label>
 					</div>
 				
 					<div align="right" >
-						<input type="submit" value="수정">&nbsp;&nbsp;
-						<input type="reset" value="다시쓰기">&nbsp;&nbsp;
-						<input type="button" value="취소" onclick="history.back()">
+						<input type="submit" class="btn btn-primary" value="수정">&nbsp;&nbsp;
+						<input type="reset" class="btn btn-primary" value="다시쓰기">&nbsp;&nbsp;
+						<input type="button" class="btn btn-primary" value="취소" onclick="history.back()">
 					</div>
 			</form>
 			</div>
